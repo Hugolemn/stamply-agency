@@ -1,26 +1,306 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { Check, Smartphone, Zap, RefreshCw, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Tamply — La carte de fidélité digitale pour votre friterie" },
+      {
+        name: "description",
+        content:
+          "Fidélisez vos clients sans qu'ils téléchargent d'app. Validez chaque tampon en un clic. 30 jours d'essai gratuit, puis 29€/mois.",
+      },
+    ],
+  }),
+  component: Landing,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Landing() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Header />
+      <Hero />
+      <Benefits />
+      <HowItWorks />
+      <Pricing />
+      <Testimonials />
+      <FinalCta />
+      <Footer />
     </div>
   );
 }
 
-function Index() {
-  return <PlaceholderIndex />;
+function Header() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-cta shadow-soft">
+            <span className="text-lg">🍟</span>
+          </div>
+          <span className="text-xl font-extrabold tracking-tight">Tamply</span>
+        </Link>
+        <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+          <a href="#avantages" className="text-muted-foreground hover:text-foreground">Avantages</a>
+          <a href="#tarifs" className="text-muted-foreground hover:text-foreground">Tarifs</a>
+          <a href="#temoignages" className="text-muted-foreground hover:text-foreground">Témoignages</a>
+        </nav>
+        <div className="flex items-center gap-2">
+          <Link to="/login" className="hidden text-sm font-semibold text-foreground/80 hover:text-foreground sm:block">
+            Connexion
+          </Link>
+          <Link to="/signup">
+            <Button variant="cta" size="default">Démarrer</Button>
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden bg-gradient-hero">
+      <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
+      <div className="absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-secondary/20 blur-3xl" />
+      <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-28">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-4 py-1.5 text-xs font-semibold text-muted-foreground shadow-card">
+            <Sparkles className="h-3.5 w-3.5 text-tamply-red" />
+            Pensé pour les friteries belges et françaises
+          </div>
+          <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-6xl">
+            La carte de fidélité digitale pour votre <span className="bg-gradient-to-r from-[#E63946] to-[#FFB800] bg-clip-text text-transparent">friterie</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+            Vos clients scannent un QR code au comptoir, vous validez en un clic.
+            Plus de cartes en carton perdues. Plus de clients oubliés.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link to="/signup">
+              <Button variant="cta" size="xl">Démarrer gratuitement →</Button>
+            </Link>
+            <span className="text-sm text-muted-foreground">30 jours d'essai · sans carte bancaire</span>
+          </div>
+        </div>
+        <HeroVisual />
+      </div>
+    </section>
+  );
+}
+
+function HeroVisual() {
+  return (
+    <div className="relative mx-auto mt-14 max-w-md">
+      <div className="rounded-3xl border border-border/60 bg-card p-6 shadow-soft">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-cta">🍟</div>
+            <div>
+              <div className="text-sm font-bold">Friterie Chez Marcel</div>
+              <div className="text-xs text-muted-foreground">+32 4 78 …</div>
+            </div>
+          </div>
+          <span className="rounded-full bg-success/10 px-2 py-1 text-xs font-semibold text-success">+1 tampon</span>
+        </div>
+        <div className="mt-6 grid grid-cols-5 gap-2">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className={`aspect-square rounded-xl border-2 border-dashed grid place-items-center text-lg ${
+                i < 7 ? "bg-primary border-primary shadow-soft" : "border-border bg-muted/40"
+              }`}
+            >
+              {i < 7 ? "🍟" : ""}
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 text-center text-sm font-semibold text-muted-foreground">
+          7 / 10 — plus que 3 pour ta frite gratuite !
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Benefits() {
+  const items = [
+    {
+      icon: Smartphone,
+      title: "Aucune app à télécharger",
+      desc: "Vos clients scannent, saisissent leur numéro, c'est tout. Pas d'inscription, pas d'install.",
+    },
+    {
+      icon: Zap,
+      title: "Validez en un clic",
+      desc: "Notification instantanée sur votre mobile. Un gros bouton vert. Utilisable à une main.",
+    },
+    {
+      icon: RefreshCw,
+      title: "Vos clients reviennent plus",
+      desc: "Récompense automatique à 10 tampons. Plus de cartes oubliées au fond du sac.",
+    },
+  ];
+  return (
+    <section id="avantages" className="py-20">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-extrabold md:text-4xl">Tout simplement, ça marche.</h2>
+          <p className="mt-3 text-muted-foreground">Conçu avec et pour des gérants de friterie.</p>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {items.map((it) => (
+            <div key={it.title} className="rounded-2xl border border-border/60 bg-card p-6 shadow-card transition-all hover:shadow-soft hover:-translate-y-0.5">
+              <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-cta">
+                <it.icon className="h-6 w-6 text-foreground" />
+              </div>
+              <h3 className="mt-4 text-lg font-bold">{it.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    { n: 1, t: "Le client scanne", d: "Un QR code affiché à votre comptoir." },
+    { n: 2, t: "Il entre son numéro", d: "Pas de compte, pas d'app. 5 secondes." },
+    { n: 3, t: "Vous validez", d: "Un gros bouton vert sur votre mobile." },
+    { n: 4, t: "Il revient", d: "À 10 tampons : récompense automatique." },
+  ];
+  return (
+    <section className="bg-gradient-hero py-20">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-extrabold md:text-4xl">Comment ça marche</h2>
+        </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-4">
+          {steps.map((s) => (
+            <div key={s.n} className="rounded-2xl bg-card p-6 shadow-card">
+              <div className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-base font-bold text-secondary-foreground">
+                {s.n}
+              </div>
+              <h3 className="mt-4 font-bold">{s.t}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  const features = [
+    "Clients illimités",
+    "QR code unique pour votre établissement",
+    "Validation en temps réel",
+    "Tableau de bord mobile",
+    "SMS de récompense automatiques",
+    "Support en français",
+  ];
+  return (
+    <section id="tarifs" className="py-20">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-extrabold md:text-4xl">Un seul tarif, simple.</h2>
+          <p className="mt-3 text-muted-foreground">Sans engagement. Annulable à tout moment.</p>
+        </div>
+        <div className="mx-auto mt-10 max-w-lg">
+          <div className="relative overflow-hidden rounded-3xl border-2 border-primary bg-card p-8 shadow-glow">
+            <div className="absolute right-4 top-4 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-secondary-foreground">
+              30 jours offerts
+            </div>
+            <div className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Tamply Pro</div>
+            <div className="mt-4 flex items-baseline gap-1">
+              <span className="text-5xl font-extrabold">29€</span>
+              <span className="text-muted-foreground">/mois</span>
+            </div>
+            <p className="mt-2 text-sm text-muted-foreground">par établissement, après l'essai gratuit</p>
+            <ul className="mt-6 space-y-3">
+              {features.map((f) => (
+                <li key={f} className="flex items-start gap-3 text-sm">
+                  <div className="mt-0.5 grid h-5 w-5 place-items-center rounded-full bg-success/15">
+                    <Check className="h-3 w-3 text-success" />
+                  </div>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <Link to="/signup" className="mt-8 block">
+              <Button variant="cta" size="xl" className="w-full">Démarrer mon essai gratuit</Button>
+            </Link>
+            <p className="mt-3 text-center text-xs text-muted-foreground">Aucune carte bancaire requise</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const t = [
+    { name: "Marcel", role: "Friterie Chez Marcel · Liège", quote: "Mes habitués adorent. Et je ne perds plus de cartes en carton derrière le comptoir." },
+    { name: "Sophie", role: "Sandwicherie La Bonne Mie · Lille", quote: "Validation en un clic, c'est exactement ce qu'il me fallait pendant le coup de feu du midi." },
+    { name: "Karim", role: "Friterie du Centre · Charleroi", quote: "Mes clients reviennent plus souvent depuis qu'ils suivent leurs tampons sur leur téléphone." },
+  ];
+  return (
+    <section id="temoignages" className="bg-muted/40 py-20">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-extrabold md:text-4xl">Ils l'utilisent déjà</h2>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {t.map((it) => (
+            <div key={it.name} className="rounded-2xl border border-border/60 bg-card p-6 shadow-card">
+              <div className="text-2xl">⭐⭐⭐⭐⭐</div>
+              <p className="mt-3 text-sm leading-relaxed">« {it.quote} »</p>
+              <div className="mt-4 border-t border-border/60 pt-3">
+                <div className="text-sm font-bold">{it.name}</div>
+                <div className="text-xs text-muted-foreground">{it.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section className="py-20">
+      <div className="mx-auto max-w-3xl px-4 text-center">
+        <h2 className="text-3xl font-extrabold md:text-4xl">Prêt à fidéliser vos clients ?</h2>
+        <p className="mt-3 text-muted-foreground">30 jours d'essai gratuit. Sans carte bancaire.</p>
+        <Link to="/signup" className="mt-8 inline-block">
+          <Button variant="cta" size="xl">Démarrer gratuitement →</Button>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border/60 bg-background py-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground md:flex-row">
+        <div className="flex items-center gap-2">
+          <div className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-cta text-sm">🍟</div>
+          <span className="font-bold text-foreground">Tamply</span>
+          <span>· © {new Date().getFullYear()}</span>
+        </div>
+        <div className="flex gap-6">
+          <a href="#" className="hover:text-foreground">Mentions légales</a>
+          <a href="#" className="hover:text-foreground">CGU</a>
+          <a href="#" className="hover:text-foreground">Confidentialité</a>
+          <a href="#" className="hover:text-foreground">Contact</a>
+        </div>
+      </div>
+    </footer>
+  );
 }
