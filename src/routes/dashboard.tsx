@@ -8,14 +8,15 @@ export const Route = createFileRoute("/dashboard")({
   component: DashboardLayout,
 });
 
-const NAV = [
+type NavItem = { to: string; icon: typeof LayoutGrid; label: string; exact?: boolean };
+const NAV: readonly NavItem[] = [
   { to: "/dashboard", icon: LayoutGrid, label: "Vue d'ensemble", exact: true },
   { to: "/dashboard/validation", icon: CheckCircle2, label: "Tampons" },
   { to: "/dashboard/clients", icon: Users, label: "Clients" },
   { to: "/dashboard/qr", icon: QrCode, label: "QR code" },
   { to: "/dashboard/settings", icon: Settings, label: "Paramètres" },
   { to: "/dashboard/subscription", icon: CreditCard, label: "Abonnement" },
-] as const;
+];
 
 function DashboardLayout() {
   const { user, loading, signOut } = useAuth();
@@ -40,7 +41,7 @@ function DashboardLayout() {
       <header className="sticky top-0 z-30 border-b border-border/60 bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-cta shadow-soft">🍟</div>
+            <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-cta shadow-soft">🎟️</div>
             <span className="text-lg font-extrabold">Tamply</span>
           </Link>
           <button
@@ -57,7 +58,7 @@ function DashboardLayout() {
             return (
               <Link
                 key={n.to}
-                to={n.to}
+                to={n.to as any}
                 className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition ${
                   active ? "bg-primary text-primary-foreground shadow-soft" : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
@@ -81,7 +82,7 @@ function DashboardLayout() {
           return (
             <Link
               key={n.to}
-              to={n.to}
+              to={n.to as any}
               className={`flex flex-col items-center justify-center gap-0.5 py-2.5 text-[10px] font-semibold ${
                 active ? "text-foreground" : "text-muted-foreground"
               }`}
