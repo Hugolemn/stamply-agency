@@ -63,16 +63,16 @@ function Signup() {
     <div className="min-h-screen bg-gradient-hero px-4 py-10">
       <div className="mx-auto max-w-md">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-cta shadow-soft">🍟</div>
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-cta shadow-soft">🎟️</div>
           <span className="text-2xl font-extrabold">Tamply</span>
         </Link>
         <div className="rounded-3xl border border-border/60 bg-card p-7 shadow-soft">
           <h1 className="text-2xl font-extrabold">Créez votre compte</h1>
           <p className="mt-1 text-sm text-muted-foreground">30 jours d'essai gratuit, sans carte bancaire.</p>
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
-            <Field label="Nom de l'établissement" value={form.nom_etablissement} onChange={(v) => setForm({ ...form, nom_etablissement: v })} placeholder="Friterie Chez Marcel" />
+            <Field label="Nom de l'établissement" value={form.nom_etablissement} onChange={(v) => setForm({ ...form, nom_etablissement: v })} placeholder="Brasserie Chez Marcel" />
             <Field label="Votre nom complet" value={form.nom_gerant} onChange={(v) => setForm({ ...form, nom_gerant: v })} placeholder="Marcel Dupont" />
-            <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="marcel@friterie.be" />
+            <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="marcel@monrestaurant.be" />
             <Field label="Mot de passe" type="password" value={form.password} onChange={(v) => setForm({ ...form, password: v })} placeholder="Au moins 8 caractères" />
             <Button type="submit" variant="cta" size="xl" disabled={loading} className="mt-2 w-full">
               {loading ? "Création…" : "Créer mon compte"}

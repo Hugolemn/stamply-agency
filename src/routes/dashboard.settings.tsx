@@ -74,7 +74,7 @@ function Settings() {
         <h2 className="font-bold">Programme de fidélité</h2>
         <div>
           <Label className="mb-1.5 block text-sm font-semibold">Récompense</Label>
-          <Input value={form.description_recompense} onChange={(e) => setForm({ ...form, description_recompense: e.target.value })} placeholder="1 frite gratuite" className="h-11 rounded-xl" />
+          <Input value={form.description_recompense} onChange={(e) => setForm({ ...form, description_recompense: e.target.value })} placeholder="Ex : 1 boisson offerte, 1 dessert gratuit, -10%…" className="h-11 rounded-xl" />
         </div>
         <div>
           <Label className="mb-1.5 block text-sm font-semibold">Tampons requis (3 à 50)</Label>
