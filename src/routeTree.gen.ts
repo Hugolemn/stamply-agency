@@ -17,6 +17,11 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardValidationRouteImport } from './routes/dashboard.validation'
+import { Route as DashboardSubscriptionRouteImport } from './routes/dashboard.subscription'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardQrRouteImport } from './routes/dashboard.qr'
+import { Route as DashboardClientsRouteImport } from './routes/dashboard.clients'
+import { Route as CShopIdRouteImport } from './routes/c.$shopId'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -58,6 +63,31 @@ const DashboardValidationRoute = DashboardValidationRouteImport.update({
   path: '/validation',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardSubscriptionRoute = DashboardSubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardQrRoute = DashboardQrRouteImport.update({
+  id: '/qr',
+  path: '/qr',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardClientsRoute = DashboardClientsRouteImport.update({
+  id: '/clients',
+  path: '/clients',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const CShopIdRoute = CShopIdRouteImport.update({
+  id: '/c/$shopId',
+  path: '/c/$shopId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,6 +96,11 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
+  '/c/$shopId': typeof CShopIdRoute
+  '/dashboard/clients': typeof DashboardClientsRoute
+  '/dashboard/qr': typeof DashboardQrRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/subscription': typeof DashboardSubscriptionRoute
   '/dashboard/validation': typeof DashboardValidationRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -75,6 +110,11 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
+  '/c/$shopId': typeof CShopIdRoute
+  '/dashboard/clients': typeof DashboardClientsRoute
+  '/dashboard/qr': typeof DashboardQrRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/subscription': typeof DashboardSubscriptionRoute
   '/dashboard/validation': typeof DashboardValidationRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -86,6 +126,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
+  '/c/$shopId': typeof CShopIdRoute
+  '/dashboard/clients': typeof DashboardClientsRoute
+  '/dashboard/qr': typeof DashboardQrRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/subscription': typeof DashboardSubscriptionRoute
   '/dashboard/validation': typeof DashboardValidationRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -98,6 +143,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/signup'
+    | '/c/$shopId'
+    | '/dashboard/clients'
+    | '/dashboard/qr'
+    | '/dashboard/settings'
+    | '/dashboard/subscription'
     | '/dashboard/validation'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -107,6 +157,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/signup'
+    | '/c/$shopId'
+    | '/dashboard/clients'
+    | '/dashboard/qr'
+    | '/dashboard/settings'
+    | '/dashboard/subscription'
     | '/dashboard/validation'
     | '/dashboard'
   id:
@@ -117,6 +172,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/signup'
+    | '/c/$shopId'
+    | '/dashboard/clients'
+    | '/dashboard/qr'
+    | '/dashboard/settings'
+    | '/dashboard/subscription'
     | '/dashboard/validation'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -128,6 +188,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SignupRoute: typeof SignupRoute
+  CShopIdRoute: typeof CShopIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -188,15 +249,58 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardValidationRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/subscription': {
+      id: '/dashboard/subscription'
+      path: '/subscription'
+      fullPath: '/dashboard/subscription'
+      preLoaderRoute: typeof DashboardSubscriptionRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/qr': {
+      id: '/dashboard/qr'
+      path: '/qr'
+      fullPath: '/dashboard/qr'
+      preLoaderRoute: typeof DashboardQrRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/clients': {
+      id: '/dashboard/clients'
+      path: '/clients'
+      fullPath: '/dashboard/clients'
+      preLoaderRoute: typeof DashboardClientsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/c/$shopId': {
+      id: '/c/$shopId'
+      path: '/c/$shopId'
+      fullPath: '/c/$shopId'
+      preLoaderRoute: typeof CShopIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 interface DashboardRouteChildren {
+  DashboardClientsRoute: typeof DashboardClientsRoute
+  DashboardQrRoute: typeof DashboardQrRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardSubscriptionRoute: typeof DashboardSubscriptionRoute
   DashboardValidationRoute: typeof DashboardValidationRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardClientsRoute: DashboardClientsRoute,
+  DashboardQrRoute: DashboardQrRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardSubscriptionRoute: DashboardSubscriptionRoute,
   DashboardValidationRoute: DashboardValidationRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
@@ -212,6 +316,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SignupRoute: SignupRoute,
+  CShopIdRoute: CShopIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
