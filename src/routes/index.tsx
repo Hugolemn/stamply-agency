@@ -5,11 +5,11 @@ import { Check, Smartphone, Zap, RefreshCw, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tamply — La carte de fidélité digitale pour votre friterie" },
+      { title: "Tamply — La carte de fidélité digitale pour l'Horeca" },
       {
         name: "description",
         content:
-          "Fidélisez vos clients sans qu'ils téléchargent d'app. Validez chaque tampon en un clic. 30 jours d'essai gratuit, puis 29€/mois.",
+          "Restaurants, sandwicheries, brasseries, cafés, friteries, food trucks : fidélisez vos clients sans qu'ils téléchargent d'app. Validez chaque tampon en un clic. 30 jours d'essai gratuit, puis 29€/mois.",
       },
     ],
   }),
@@ -37,7 +37,7 @@ function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
           <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-cta shadow-soft">
-            <span className="text-lg">🍟</span>
+            <span className="text-lg">🎟️</span>
           </div>
           <span className="text-xl font-extrabold tracking-tight">Tamply</span>
         </Link>
@@ -68,13 +68,13 @@ function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-4 py-1.5 text-xs font-semibold text-muted-foreground shadow-card">
             <Sparkles className="h-3.5 w-3.5 text-tamply-red" />
-            Pensé pour les friteries belges et françaises
+            Pensé pour l'Horeca en Belgique et en France
           </div>
           <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-6xl">
-            La carte de fidélité digitale pour votre <span className="bg-gradient-to-r from-[#E63946] to-[#FFB800] bg-clip-text text-transparent">friterie</span>
+            La carte de fidélité digitale pour votre <span className="bg-gradient-to-r from-[#E63946] to-[#FFB800] bg-clip-text text-transparent">établissement</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            Vos clients scannent un QR code au comptoir, vous validez en un clic.
+            Restaurants, sandwicheries, brasseries, cafés, friteries, food trucks. Vos clients scannent un QR code au comptoir, vous validez en un clic.
             Plus de cartes en carton perdues. Plus de clients oubliés.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -96,9 +96,9 @@ function HeroVisual() {
       <div className="rounded-3xl border border-border/60 bg-card p-6 shadow-soft">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-cta">🍟</div>
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-cta">🎟️</div>
             <div>
-              <div className="text-sm font-bold">Friterie Chez Marcel</div>
+              <div className="text-sm font-bold">Brasserie Chez Marcel</div>
               <div className="text-xs text-muted-foreground">+32 4 78 …</div>
             </div>
           </div>
@@ -112,12 +112,12 @@ function HeroVisual() {
                 i < 7 ? "bg-primary border-primary shadow-soft" : "border-border bg-muted/40"
               }`}
             >
-              {i < 7 ? "🍟" : ""}
+              {i < 7 ? "✓" : ""}
             </div>
           ))}
         </div>
         <div className="mt-4 text-center text-sm font-semibold text-muted-foreground">
-          7 / 10 — plus que 3 pour ta frite gratuite !
+          7 / 10 — plus que 3 pour la récompense !
         </div>
       </div>
     </div>
@@ -147,7 +147,7 @@ function Benefits() {
       <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-extrabold md:text-4xl">Tout simplement, ça marche.</h2>
-          <p className="mt-3 text-muted-foreground">Conçu avec et pour des gérants de friterie.</p>
+          <p className="mt-3 text-muted-foreground">Conçu avec et pour les gérants de l'Horeca.</p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {items.map((it) => (
@@ -244,9 +244,10 @@ function Pricing() {
 
 function Testimonials() {
   const t = [
-    { name: "Marcel", role: "Friterie Chez Marcel · Liège", quote: "Mes habitués adorent. Et je ne perds plus de cartes en carton derrière le comptoir." },
     { name: "Sophie", role: "Sandwicherie La Bonne Mie · Lille", quote: "Validation en un clic, c'est exactement ce qu'il me fallait pendant le coup de feu du midi." },
-    { name: "Karim", role: "Friterie du Centre · Charleroi", quote: "Mes clients reviennent plus souvent depuis qu'ils suivent leurs tampons sur leur téléphone." },
+    { name: "Marcel", role: "Brasserie Chez Marcel · Liège", quote: "Mes habitués adorent. Et je ne perds plus de cartes en carton derrière le comptoir." },
+    { name: "Inès", role: "Café Le Central · Bruxelles", quote: "Mes clients reviennent plus souvent depuis qu'ils suivent leurs tampons sur leur téléphone." },
+    { name: "Karim", role: "Food truck Le Bon Burger · Charleroi", quote: "Parfait pour un food truck : un QR code, et c'est parti." },
   ];
   return (
     <section id="temoignages" className="bg-muted/40 py-20">
@@ -254,7 +255,7 @@ function Testimonials() {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-extrabold md:text-4xl">Ils l'utilisent déjà</h2>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {t.map((it) => (
             <div key={it.name} className="rounded-2xl border border-border/60 bg-card p-6 shadow-card">
               <div className="text-2xl">⭐⭐⭐⭐⭐</div>
@@ -290,7 +291,7 @@ function Footer() {
     <footer className="border-t border-border/60 bg-background py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground md:flex-row">
         <div className="flex items-center gap-2">
-          <div className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-cta text-sm">🍟</div>
+          <div className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-cta text-sm">🎟️</div>
           <span className="font-bold text-foreground">Tamply</span>
           <span>· © {new Date().getFullYear()}</span>
         </div>

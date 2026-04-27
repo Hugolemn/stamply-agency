@@ -7,7 +7,7 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-hero px-4">
       <div className="max-w-md text-center">
-        <div className="text-7xl mb-4">🍟</div>
+        <div className="text-7xl mb-4">🎟️</div>
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page introuvable</h2>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -29,15 +29,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1" },
-      { title: "Tamply — La carte de fidélité digitale pour votre friterie" },
+      { title: "Tamply — La carte de fidélité digitale pour l'Horeca" },
       {
         name: "description",
         content:
-          "Tamply : la carte de fidélité digitale pour friteries et sandwicheries. Aucune app à télécharger pour vos clients. Validez chaque tampon en un clic.",
+          "Tamply : la carte de fidélité digitale pour restaurants, sandwicheries, brasseries, cafés et friteries. Aucune app à télécharger pour vos clients. Validez chaque tampon en un clic.",
       },
       { name: "author", content: "Tamply" },
       { property: "og:title", content: "Tamply — Carte de fidélité digitale" },
-      { property: "og:description", content: "La fidélité digitale simple pour les friteries et sandwicheries." },
+      { property: "og:description", content: "La fidélité digitale simple pour tous les commerces de l'Horeca." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
