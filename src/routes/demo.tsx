@@ -33,7 +33,7 @@ const STEPS: { key: StepKey; n: number; title: string; subtitle: string; icon: a
   { key: "reward", n: 5, title: "À 10 tampons : récompense !", subtitle: "Confettis, animation, et le client revient encore.", icon: Gift },
 ];
 
-const STEP_DURATION = 6000;
+const STEP_DURATION = 5000;
 
 function DemoPage() {
   const [active, setActive] = useState<number>(0);
