@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
@@ -24,9 +25,14 @@ function Signup() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ nom_etablissement: "", nom_gerant: "", email: "", password: "" });
+  const [acceptCgv, setAcceptCgv] = useState(false);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!acceptCgv) {
+      toast.error("Vous devez accepter les CGV et la politique de confidentialité.");
+      return;
+    }
     const parsed = Schema.safeParse(form);
     if (!parsed.success) {
       toast.error(parsed.error.issues[0].message);
@@ -75,7 +81,26 @@ function Signup() {
             <Field label="Votre nom complet" value={form.nom_gerant} onChange={(v) => setForm({ ...form, nom_gerant: v })} placeholder="Marcel Dupont" />
             <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="marcel@monrestaurant.be" />
             <Field label="Mot de passe" type="password" value={form.password} onChange={(v) => setForm({ ...form, password: v })} placeholder="Au moins 8 caractères" />
-            <Button type="submit" variant="cta" size="xl" disabled={loading} className="mt-2 w-full">
+            <div className="flex items-start gap-2 pt-1">
+              <Checkbox
+                id="accept-cgv"
+                checked={acceptCgv}
+                onCheckedChange={(v) => setAcceptCgv(v === true)}
+                className="mt-0.5"
+              />
+              <label htmlFor="accept-cgv" className="text-xs leading-relaxed text-muted-foreground">
+                J'ai lu et j'accepte les{" "}
+                <Link to="/cgv" target="_blank" className="font-semibold text-foreground underline">
+                  Conditions Générales de Vente
+                </Link>{" "}
+                ainsi que la{" "}
+                <Link to="/confidentialite" target="_blank" className="font-semibold text-foreground underline">
+                  politique de confidentialité
+                </Link>
+                .
+              </label>
+            </div>
+            <Button type="submit" variant="cta" size="xl" disabled={loading || !acceptCgv} className="mt-2 w-full">
               {loading ? "Création…" : "Créer mon compte"}
             </Button>
           </form>
