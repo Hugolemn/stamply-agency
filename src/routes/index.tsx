@@ -43,6 +43,7 @@ function Header() {
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
           <a href="#avantages" className="text-muted-foreground hover:text-foreground">Avantages</a>
+          <Link to="/demo" className="text-muted-foreground hover:text-foreground">Démo</Link>
           <a href="#tarifs" className="text-muted-foreground hover:text-foreground">Tarifs</a>
           <a href="#temoignages" className="text-muted-foreground hover:text-foreground">Témoignages</a>
         </nav>
@@ -81,8 +82,11 @@ function Hero() {
             <Link to="/signup">
               <Button variant="cta" size="xl">Démarrer gratuitement →</Button>
             </Link>
-            <span className="text-sm text-muted-foreground">30 jours d'essai · sans carte bancaire</span>
+            <Link to="/demo" className="text-sm font-semibold text-foreground/80 underline-offset-4 hover:underline">
+              ▶ Voir la démo
+            </Link>
           </div>
+          <div className="mt-3 text-xs text-muted-foreground">30 jours d'essai · sans carte bancaire</div>
         </div>
         <HeroVisual />
       </div>
