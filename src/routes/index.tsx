@@ -1,6 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift, Coffee } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
@@ -27,7 +33,9 @@ function Landing() {
       <Testimonials />
       <Pricing />
       <FinalCta />
+      <Faq />
       <Footer />
+      <StickyMobileCta />
     </div>
   );
 }
@@ -289,6 +297,14 @@ function Pricing() {
               <span className="text-muted-foreground">/mois</span>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">par établissement, après l'essai gratuit</p>
+            <div className="mt-4 flex items-start gap-3 rounded-xl border border-border/60 bg-muted/40 p-3">
+              <div className="grid h-8 w-8 flex-none place-items-center rounded-lg bg-secondary/15">
+                <Coffee className="h-4 w-4 text-secondary" />
+              </div>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-foreground">Moins d'1€ par jour.</span> Le prix de 2 cafés pour fidéliser tous vos clients ce mois-ci — et économiser l'impression de cartes en carton.
+              </p>
+            </div>
             <ul className="mt-6 space-y-3">
               {features.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-sm">
@@ -371,5 +387,75 @@ function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function Faq() {
+  const items = [
+    {
+      q: "Mes clients doivent-ils télécharger une application ?",
+      a: "Non, jamais. Ils scannent un QR code à votre comptoir, entrent leur numéro de téléphone, c'est tout. Tout se passe dans leur navigateur, sans inscription ni installation.",
+    },
+    {
+      q: "Ai-je besoin de matériel particulier ?",
+      a: "Non. Un simple smartphone suffit pour valider les tampons. Côté comptoir, vous imprimez votre QR code (fourni dans votre tableau de bord) et vous l'affichez. C'est tout.",
+    },
+    {
+      q: "Est-ce conforme au RGPD ?",
+      a: "Oui. Nous ne stockons que le numéro de téléphone du client (utilisé uniquement pour les tampons et le SMS de récompense). Aucune donnée n'est revendue. Le client peut demander la suppression à tout moment.",
+    },
+    {
+      q: "Puis-je annuler quand je veux ?",
+      a: "Oui, en un clic depuis votre tableau de bord. Sans engagement, sans frais cachés. Vous gardez l'accès jusqu'à la fin de la période payée.",
+    },
+    {
+      q: "Que se passe-t-il après les 30 jours d'essai ?",
+      a: "Rien d'automatique : vous ne renseignez votre carte bancaire que si vous décidez de continuer. Pas de prélèvement surprise.",
+    },
+    {
+      q: "Et si j'ai plusieurs établissements ?",
+      a: "Le tarif de 29€/mois est par établissement. Contactez-nous pour un tarif dégressif à partir de 3 points de vente.",
+    },
+  ];
+  return (
+    <section id="faq" className="bg-muted/40 py-20">
+      <div className="mx-auto max-w-3xl px-4">
+        <div className="text-center">
+          <h2 className="text-3xl font-extrabold md:text-4xl">Questions fréquentes</h2>
+          <p className="mt-3 text-muted-foreground">Tout ce qu'il faut savoir avant de se lancer.</p>
+        </div>
+        <Accordion type="single" collapsible className="mt-10 space-y-3">
+          {items.map((it, i) => (
+            <AccordionItem
+              key={i}
+              value={`item-${i}`}
+              className="rounded-2xl border border-border/60 bg-card px-5 shadow-card"
+            >
+              <AccordionTrigger className="text-left text-base font-bold hover:no-underline">
+                {it.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                {it.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+  );
+}
+
+function StickyMobileCta() {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-background/95 p-3 shadow-soft backdrop-blur-md md:hidden">
+      <Link to="/signup" className="block">
+        <Button variant="cta" size="lg" className="w-full">
+          Démarrer gratuitement →
+        </Button>
+      </Link>
+      <p className="mt-1 text-center text-[11px] text-muted-foreground">
+        30 jours offerts · sans carte bancaire
+      </p>
+    </div>
   );
 }
