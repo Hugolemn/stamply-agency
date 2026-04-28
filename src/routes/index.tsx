@@ -23,8 +23,8 @@ function Landing() {
       <Hero />
       <Benefits />
       <HowItWorks />
-      <Pricing />
       <Testimonials />
+      <Pricing />
       <FinalCta />
       <Footer />
     </div>
