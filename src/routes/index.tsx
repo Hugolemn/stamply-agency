@@ -82,9 +82,6 @@ function Hero() {
             <Link to="/signup">
               <Button variant="cta" size="xl">Démarrer gratuitement →</Button>
             </Link>
-            <Link to="/demo" className="text-sm font-semibold text-foreground/80 underline-offset-4 hover:underline">
-              ▶ Voir la démo
-            </Link>
           </div>
           <div className="mt-3 text-xs text-muted-foreground">30 jours d'essai · sans carte bancaire</div>
         </div>
