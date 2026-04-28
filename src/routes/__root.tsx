@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/lib/auth-context";
+import { CookieBanner } from "@/components/cookie-banner";
 import appCss from "../styles.css?url";
 import logo from "@/assets/logo.png";
 
@@ -87,6 +88,7 @@ function RootComponent() {
     <AuthProvider>
       <Outlet />
       <Toaster position="top-center" richColors />
+      <CookieBanner />
     </AuthProvider>
   );
 }
