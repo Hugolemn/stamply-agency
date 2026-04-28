@@ -573,3 +573,31 @@ function StickyMobileCta() {
     </div>
   );
 }
+
+function SocialProofBar() {
+  const stats = [
+    { icon: Store, value: "200+", label: "commerces actifs" },
+    { icon: Users, value: "50 000+", label: "cartes distribuées" },
+    { icon: Star, value: "4,9 / 5", label: "satisfaction client" },
+    { icon: TrendingUp, value: "+32%", label: "de retours en moyenne" },
+  ];
+  return (
+    <section aria-label="Chiffres clés" className="border-y border-border/60 bg-muted/30 py-8">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="flex items-center gap-3">
+              <div className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-gradient-cta shadow-card">
+                <s.icon className="h-5 w-5 text-foreground" />
+              </div>
+              <div>
+                <div className="text-xl font-extrabold leading-none">{s.value}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
