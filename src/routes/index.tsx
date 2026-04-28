@@ -150,9 +150,25 @@ function Hero() {
 }
 
 function HeroVisual() {
+  const [stamps, setStamps] = useState(0);
+  const [pulse, setPulse] = useState(false);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setStamps((prev) => {
+        const next = prev >= 7 ? 0 : prev + 1;
+        if (next > 0) {
+          setPulse(true);
+          setTimeout(() => setPulse(false), 400);
+        }
+        return next;
+      });
+    }, 900);
+    return () => clearInterval(id);
+  }, []);
   return (
     <div className="relative mx-auto mt-14 max-w-md">
-      <div className="rounded-3xl border border-border/60 bg-card p-6 shadow-soft">
+      <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-primary/30 via-secondary/20 to-transparent blur-2xl" />
+      <div className="relative rounded-3xl border border-border/60 bg-card p-6 shadow-soft">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-cta">🎟️</div>
@@ -161,22 +177,30 @@ function HeroVisual() {
               <div className="text-xs text-muted-foreground">+32 4 78 …</div>
             </div>
           </div>
-          <span className="rounded-full bg-success/10 px-2 py-1 text-xs font-semibold text-success">+1 tampon</span>
+          <span
+            className={`rounded-full px-2 py-1 text-xs font-semibold text-success transition-all duration-300 ${
+              pulse ? "scale-110 bg-success/25" : "scale-100 bg-success/10"
+            }`}
+          >
+            +1 tampon
+          </span>
         </div>
         <div className="mt-6 grid grid-cols-5 gap-2">
           {Array.from({ length: 10 }).map((_, i) => (
             <div
               key={i}
-              className={`aspect-square rounded-xl border-2 border-dashed grid place-items-center text-lg ${
-                i < 7 ? "bg-primary border-primary shadow-soft" : "border-border bg-muted/40"
+              className={`aspect-square rounded-xl border-2 grid place-items-center text-lg transition-all duration-500 ${
+                i < stamps
+                  ? "border-solid border-primary bg-primary shadow-soft scale-100"
+                  : "border-dashed border-border bg-muted/40 scale-95"
               }`}
             >
-              {i < 7 ? "✓" : ""}
+              {i < stamps ? "✓" : ""}
             </div>
           ))}
         </div>
         <div className="mt-4 text-center text-sm font-semibold text-muted-foreground">
-          7 / 10 — plus que 3 pour la récompense !
+          {stamps} / 10 — plus que {10 - stamps} pour la récompense&nbsp;!
         </div>
       </div>
     </div>
