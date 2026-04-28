@@ -459,10 +459,9 @@ function Footer() {
           <span>· © {new Date().getFullYear()}</span>
         </div>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-foreground">Mentions légales</a>
-          <a href="#" className="hover:text-foreground">CGU</a>
-          <a href="#" className="hover:text-foreground">Confidentialité</a>
-          <a href="#" className="hover:text-foreground">Contact</a>
+          <Link to="/mentions-legales" className="hover:text-foreground">Mentions légales</Link>
+          <Link to="/cgv" className="hover:text-foreground">CGV</Link>
+          <Link to="/confidentialite" className="hover:text-foreground">Confidentialité</Link>
         </div>
       </div>
     </footer>
