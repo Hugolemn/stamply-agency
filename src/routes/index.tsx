@@ -1,6 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift, Coffee } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
@@ -27,7 +33,9 @@ function Landing() {
       <Testimonials />
       <Pricing />
       <FinalCta />
+      <Faq />
       <Footer />
+      <StickyMobileCta />
     </div>
   );
 }
@@ -289,6 +297,14 @@ function Pricing() {
               <span className="text-muted-foreground">/mois</span>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">par établissement, après l'essai gratuit</p>
+            <div className="mt-4 flex items-start gap-3 rounded-xl border border-border/60 bg-muted/40 p-3">
+              <div className="grid h-8 w-8 flex-none place-items-center rounded-lg bg-secondary/15">
+                <Coffee className="h-4 w-4 text-secondary" />
+              </div>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-foreground">Moins d'1€ par jour.</span> Le prix de 2 cafés pour fidéliser tous vos clients ce mois-ci — et économiser l'impression de cartes en carton.
+              </p>
+            </div>
             <ul className="mt-6 space-y-3">
               {features.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-sm">
