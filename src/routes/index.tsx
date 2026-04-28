@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -6,9 +7,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift, Coffee, MessageCircle } from "lucide-react";
+import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift, Coffee, MessageCircle, Star, Users, Store, TrendingUp } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { FaqChatbot } from "@/components/faq-chatbot";
+import sophieImg from "@/assets/testimonial-sophie.jpg";
+import marcelImg from "@/assets/testimonial-marcel.jpg";
+import inesImg from "@/assets/testimonial-ines.jpg";
+import karimImg from "@/assets/testimonial-karim.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -18,6 +23,50 @@ export const Route = createFileRoute("/")({
         name: "description",
         content:
           "Restaurants, sandwicheries, brasseries, cafés, friteries, food trucks : fidélisez vos clients sans qu'ils téléchargent d'app. Validez chaque tampon en un clic. 30 jours d'essai gratuit, puis 29€/mois.",
+      },
+      { property: "og:title", content: "Tamply — La carte de fidélité digitale pour l'Horeca" },
+      { property: "og:description", content: "Aucune app à télécharger. Validez en un clic. 30 jours gratuits." },
+      { property: "og:image", content: "/og-image.jpg" },
+      { property: "og:url", content: "https://tamply.app/" },
+      { name: "twitter:title", content: "Tamply — La carte de fidélité digitale pour l'Horeca" },
+      { name: "twitter:description", content: "Aucune app à télécharger. Validez en un clic. 30 jours gratuits." },
+      { name: "keywords", content: "carte fidélité digitale, fidélisation Horeca, restaurant, café, brasserie, sandwicherie, food truck, QR code, programme fidélité" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Tamply",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          description:
+            "Carte de fidélité digitale pour les commerces de l'Horeca. Aucune application à télécharger pour les clients.",
+          offers: {
+            "@type": "Offer",
+            price: "29",
+            priceCurrency: "EUR",
+            description: "29€/mois par établissement, 30 jours d'essai gratuit",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.9",
+            reviewCount: "127",
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Tamply",
+          url: "https://tamply.app",
+          logo: "https://tamply.app/og-image.jpg",
+          description: "La carte de fidélité digitale pour l'Horeca",
+          areaServed: ["BE", "FR"],
+        }),
       },
     ],
   }),
@@ -29,6 +78,7 @@ function Landing() {
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
+      <SocialProofBar />
       <Benefits />
       <HowItWorks />
       <Testimonials />
