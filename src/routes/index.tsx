@@ -458,20 +458,6 @@ function ForWho() {
   );
 }
 
-function FinalCta() {
-  return (
-    <section className="py-20">
-      <div className="mx-auto max-w-3xl px-4 text-center reveal">
-        <h2 className="text-3xl font-extrabold md:text-4xl">Prêt à fidéliser vos clients ?</h2>
-        <p className="mt-3 text-muted-foreground">30 jours d'essai gratuit. Sans carte bancaire.</p>
-        <Link to="/signup" className="mt-8 inline-block">
-          <Button variant="cta" size="xl">Démarrer gratuitement →</Button>
-        </Link>
-      </div>
-    </section>
-  );
-}
-
 function Footer() {
   return (
     <footer className="border-t border-border/60 bg-background py-10">
@@ -488,77 +474,6 @@ function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function Faq() {
-  const items = [
-    {
-      q: "Mes clients doivent-ils télécharger une application ?",
-      a: "Non, jamais. Ils scannent un QR code à votre comptoir, entrent leur numéro de téléphone, c'est tout. Tout se passe dans leur navigateur, sans inscription ni installation.",
-    },
-    {
-      q: "Ai-je besoin de matériel particulier ?",
-      a: "Non. Un simple smartphone suffit pour valider les tampons. Côté comptoir, vous imprimez votre QR code (fourni dans votre tableau de bord) et vous l'affichez. C'est tout.",
-    },
-    {
-      q: "Est-ce conforme au RGPD ?",
-      a: "Oui. Nous ne stockons que le numéro de téléphone du client (utilisé uniquement pour les tampons et le SMS de récompense). Aucune donnée n'est revendue. Le client peut demander la suppression à tout moment.",
-    },
-    {
-      q: "Puis-je annuler quand je veux ?",
-      a: "Oui, en un clic depuis votre tableau de bord. Sans engagement, sans frais cachés. Vous gardez l'accès jusqu'à la fin de la période payée.",
-    },
-    {
-      q: "Que se passe-t-il après les 30 jours d'essai ?",
-      a: "Rien d'automatique : vous ne renseignez votre carte bancaire que si vous décidez de continuer. Pas de prélèvement surprise.",
-    },
-    {
-      q: "Et si j'ai plusieurs établissements ?",
-      a: "Le tarif de 29€/mois est par établissement. Contactez-nous pour un tarif dégressif à partir de 3 points de vente.",
-    },
-  ];
-  return (
-    <section id="faq" className="bg-muted/40 py-20">
-      <div className="mx-auto max-w-3xl px-4 reveal">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold md:text-4xl">Questions fréquentes</h2>
-          <p className="mt-3 text-muted-foreground">Tout ce qu'il faut savoir avant de se lancer.</p>
-        </div>
-        <Accordion type="single" collapsible className="mt-10 space-y-3">
-          {items.map((it, i) => (
-            <AccordionItem
-              key={i}
-              value={`item-${i}`}
-              className="rounded-2xl border border-border/60 bg-card px-5 shadow-card"
-            >
-              <AccordionTrigger className="text-left text-base font-bold hover:no-underline">
-                {it.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                {it.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-
-        <div className="mt-12">
-          <div className="mb-5 text-center">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-4 py-1.5 text-xs font-semibold text-muted-foreground shadow-card">
-              <MessageCircle className="h-3.5 w-3.5 text-tamply-red" />
-              Une autre question ?
-            </div>
-            <h3 className="text-2xl font-extrabold md:text-3xl">
-              Discutez avec notre assistant
-            </h3>
-            <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">
-              Posez n'importe quelle question sur Tamply, en français, à toute heure.
-            </p>
-          </div>
-          <FaqChatbot />
-        </div>
-      </div>
-    </section>
   );
 }
 
