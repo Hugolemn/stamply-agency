@@ -7,9 +7,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift, Coffee, MessageCircle, Store, UtensilsCrossed, Sandwich, Beer, Truck, IceCream } from "lucide-react";
+import { Check, Smartphone, Zap, RefreshCw, Sparkles, Play, QrCode, CheckCircle2, Gift, Coffee, MessageCircle, Store, UtensilsCrossed, Sandwich, Beer, Truck, IceCream, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { FaqChatbot } from "@/components/faq-chatbot";
+import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,6 +66,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Landing() {
+  useRevealOnScroll();
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -82,6 +84,8 @@ function Landing() {
 }
 
 function Header() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
   return (
     <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
@@ -102,8 +106,30 @@ function Header() {
           <Link to="/signup">
             <Button variant="cta" size="default">Démarrer</Button>
           </Link>
+          <button
+            type="button"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-10 w-10 place-items-center rounded-lg text-foreground/80 hover:bg-muted md:hidden"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+      {/* Mobile dropdown menu */}
+      {open && (
+        <div className="border-t border-border/50 bg-background/95 backdrop-blur-md md:hidden">
+          <nav className="mx-auto flex max-w-6xl flex-col px-4 py-2 text-sm font-semibold">
+            <a href="#avantages" onClick={close} className="rounded-lg px-3 py-3 text-foreground/80 hover:bg-muted hover:text-foreground">Avantages</a>
+            <Link to="/demo" onClick={close} className="rounded-lg px-3 py-3 text-foreground/80 hover:bg-muted hover:text-foreground">Démo</Link>
+            <a href="#pour-qui" onClick={close} className="rounded-lg px-3 py-3 text-foreground/80 hover:bg-muted hover:text-foreground">Pour qui</a>
+            <a href="#tarifs" onClick={close} className="rounded-lg px-3 py-3 text-foreground/80 hover:bg-muted hover:text-foreground">Tarifs</a>
+            <a href="#faq" onClick={close} className="rounded-lg px-3 py-3 text-foreground/80 hover:bg-muted hover:text-foreground">FAQ</a>
+            <Link to="/login" onClick={close} className="rounded-lg px-3 py-3 text-foreground/80 hover:bg-muted hover:text-foreground">Connexion</Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
