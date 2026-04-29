@@ -133,3 +133,34 @@
   .bg-tamply-yellow { background-color: var(--tamply-yellow); }
   .bg-tamply-red { background-color: var(--tamply-red); }
 }
+
+/* Reveal-on-scroll : invisible jusqu'à .is-visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Pop-in pour nouvelles cartes (validation) */
+@keyframes pop-in {
+  0%   { opacity: 0; transform: scale(0.92) translateY(-8px); }
+  60%  { opacity: 1; transform: scale(1.02) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-pop-in { animation: pop-in 380ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Halo discret autour d'un élément qui vient d'apparaître */
+@keyframes ring-flash {
+  0%   { box-shadow: 0 0 0 0 oklch(0.62 0.22 22 / 0.55); }
+  100% { box-shadow: 0 0 0 14px oklch(0.62 0.22 22 / 0); }
+}
+.animate-ring-flash { animation: ring-flash 900ms ease-out 1; }
