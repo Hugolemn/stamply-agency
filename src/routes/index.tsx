@@ -243,7 +243,7 @@ function Benefits() {
   ];
   return (
     <section id="avantages" className="py-20">
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-6xl px-4 reveal">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-extrabold md:text-4xl">Tout simplement, ça marche.</h2>
           <p className="mt-3 text-muted-foreground">Conçu avec et pour les gérants de l'Horeca.</p>
@@ -275,7 +275,7 @@ function HowItWorks() {
     <section className="relative overflow-hidden bg-gradient-hero py-20">
       <div className="absolute -left-24 top-12 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
       <div className="absolute -right-24 bottom-12 h-64 w-64 rounded-full bg-secondary/15 blur-3xl" />
-      <div className="relative mx-auto max-w-6xl px-4">
+      <div className="relative mx-auto max-w-6xl px-4 reveal">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-4 py-1.5 text-xs font-semibold text-muted-foreground shadow-card">
             <Play className="h-3 w-3 fill-current text-tamply-red" />
@@ -372,7 +372,7 @@ function Pricing() {
   ];
   return (
     <section id="tarifs" className="py-20">
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-6xl px-4 reveal">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-extrabold md:text-4xl">Un seul tarif, simple.</h2>
           <p className="mt-3 text-muted-foreground">Sans engagement. Annulable à tout moment.</p>
@@ -428,7 +428,7 @@ function ForWho() {
   ];
   return (
     <section id="pour-qui" className="bg-muted/40 py-20">
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-6xl px-4 reveal">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-4 py-1.5 text-xs font-semibold text-muted-foreground shadow-card">
             <Store className="h-3.5 w-3.5 text-tamply-red" />
@@ -464,7 +464,7 @@ function ForWho() {
 function FinalCta() {
   return (
     <section className="py-20">
-      <div className="mx-auto max-w-3xl px-4 text-center">
+      <div className="mx-auto max-w-3xl px-4 text-center reveal">
         <h2 className="text-3xl font-extrabold md:text-4xl">Prêt à fidéliser vos clients ?</h2>
         <p className="mt-3 text-muted-foreground">30 jours d'essai gratuit. Sans carte bancaire.</p>
         <Link to="/signup" className="mt-8 inline-block">
@@ -523,7 +523,7 @@ function Faq() {
   ];
   return (
     <section id="faq" className="bg-muted/40 py-20">
-      <div className="mx-auto max-w-3xl px-4">
+      <div className="mx-auto max-w-3xl px-4 reveal">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold md:text-4xl">Questions fréquentes</h2>
           <p className="mt-3 text-muted-foreground">Tout ce qu'il faut savoir avant de se lancer.</p>
