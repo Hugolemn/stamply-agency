@@ -89,6 +89,7 @@ export type Database = {
           nom: string
           owner_id: string
           owner_nom: string | null
+          stamp_emoji: string
           statut_abonnement: string
           stripe_customer_id: string | null
           tampons_requis: number
@@ -103,6 +104,7 @@ export type Database = {
           nom: string
           owner_id: string
           owner_nom?: string | null
+          stamp_emoji?: string
           statut_abonnement?: string
           stripe_customer_id?: string | null
           tampons_requis?: number
@@ -117,6 +119,7 @@ export type Database = {
           nom?: string
           owner_id?: string
           owner_nom?: string | null
+          stamp_emoji?: string
           statut_abonnement?: string
           stripe_customer_id?: string | null
           tampons_requis?: number

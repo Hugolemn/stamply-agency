@@ -1,0 +1,1 @@
+ALTER TABLE public.shops ADD COLUMN stamp_emoji text NOT NULL DEFAULT '🍟';
