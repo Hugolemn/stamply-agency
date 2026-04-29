@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
@@ -27,6 +28,11 @@ import { Route as DashboardQrRouteImport } from './routes/dashboard.qr'
 import { Route as DashboardClientsRouteImport } from './routes/dashboard.clients'
 import { Route as CShopIdRouteImport } from './routes/c.$shopId'
 
+const TarifsRoute = TarifsRouteImport.update({
+  id: '/tarifs',
+  path: '/tarifs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
+  '/tarifs': typeof TarifsRoute
   '/c/$shopId': typeof CShopIdRoute
   '/dashboard/clients': typeof DashboardClientsRoute
   '/dashboard/qr': typeof DashboardQrRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
+  '/tarifs': typeof TarifsRoute
   '/c/$shopId': typeof CShopIdRoute
   '/dashboard/clients': typeof DashboardClientsRoute
   '/dashboard/qr': typeof DashboardQrRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
+  '/tarifs': typeof TarifsRoute
   '/c/$shopId': typeof CShopIdRoute
   '/dashboard/clients': typeof DashboardClientsRoute
   '/dashboard/qr': typeof DashboardQrRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/reset-password'
     | '/signup'
+    | '/tarifs'
     | '/c/$shopId'
     | '/dashboard/clients'
     | '/dashboard/qr'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/reset-password'
     | '/signup'
+    | '/tarifs'
     | '/c/$shopId'
     | '/dashboard/clients'
     | '/dashboard/qr'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/reset-password'
     | '/signup'
+    | '/tarifs'
     | '/c/$shopId'
     | '/dashboard/clients'
     | '/dashboard/qr'
@@ -240,11 +252,19 @@ export interface RootRouteChildren {
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SignupRoute: typeof SignupRoute
+  TarifsRoute: typeof TarifsRoute
   CShopIdRoute: typeof CShopIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tarifs': {
+      id: '/tarifs'
+      path: '/tarifs'
+      fullPath: '/tarifs'
+      preLoaderRoute: typeof TarifsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/signup': {
       id: '/signup'
       path: '/signup'
@@ -400,6 +420,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentionsLegalesRoute: MentionsLegalesRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SignupRoute: SignupRoute,
+  TarifsRoute: TarifsRoute,
   CShopIdRoute: CShopIdRoute,
 }
 export const routeTree = rootRouteImport
