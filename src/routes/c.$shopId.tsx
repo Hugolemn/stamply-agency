@@ -24,7 +24,7 @@ export const Route = createFileRoute("/c/$shopId")({
 
 interface Shop {
   id: string; nom: string; logo_url: string | null; couleur: string;
-  description_recompense: string; tampons_requis: number;
+  description_recompense: string; tampons_requis: number; stamp_emoji: string;
 }
 interface Customer { id: string; total_tampons: number; total_recompenses: number; }
 
@@ -46,7 +46,7 @@ function ClientFlow() {
     (async () => {
       const { data, error } = await supabase
         .from("shops")
-        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis")
+        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis, stamp_emoji")
         .eq("id", shopId)
         .maybeSingle();
       if (error || !data) setShopErr(true);
@@ -264,7 +264,7 @@ function StampedStep({ shop, count, restart }: { shop: Shop; count: number; rest
         Tu as <b>{progress}</b> tampon{progress > 1 ? "s" : ""} sur <b>{total}</b>
       </p>
       <div className="mt-6 rounded-3xl border border-border/60 bg-card p-5 shadow-card">
-        <StampGrid total={total} filled={progress} />
+        <StampGrid total={total} filled={progress} emoji={shop.stamp_emoji || "🍟"} />
         <div className="mt-4 text-center text-sm font-semibold">
           Plus que <b className="text-secondary">{Math.max(0, total - progress)}</b> pour ta récompense !
         </div>
@@ -276,7 +276,7 @@ function StampedStep({ shop, count, restart }: { shop: Shop; count: number; rest
   );
 }
 
-function StampGrid({ total, filled }: { total: number; filled: number }) {
+function StampGrid({ total, filled, emoji }: { total: number; filled: number; emoji: string }) {
   const cols = total <= 10 ? 5 : total <= 16 ? 4 : 5;
   return (
     <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
@@ -289,7 +289,7 @@ function StampGrid({ total, filled }: { total: number; filled: number }) {
               done ? "bg-primary border-primary text-foreground shadow-soft scale-100" : "bg-muted/40 border-dashed border-border text-muted-foreground"
             }`}
           >
-            {done ? "🍟" : i + 1}
+            {done ? emoji : i + 1}
           </div>
         );
       })}
