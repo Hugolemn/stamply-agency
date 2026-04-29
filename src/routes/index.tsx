@@ -166,24 +166,32 @@ function HeroVisual() {
     }
     let cancelled = false;
     let current = 0;
+    let direction: 1 | -1 = 1;
     const pulseTimeouts: ReturnType<typeof setTimeout>[] = [];
     let nextTimeout: ReturnType<typeof setTimeout>;
 
     const tick = () => {
       if (cancelled) return;
-      const next = current >= 7 ? 0 : current + 1;
+      // Reverse direction at the ends so the card empties gracefully
+      if (current >= 7) direction = -1;
+      if (current <= 0) direction = 1;
+      const next = current + direction;
       current = next;
       setStamps(next);
-      if (next > 0) {
+
+      if (direction === 1) {
         setPulse(true);
         setJustStamped(next - 1);
-        pulseTimeouts.push(setTimeout(() => !cancelled && setPulse(false), 600));
-        pulseTimeouts.push(setTimeout(() => !cancelled && setJustStamped(null), 700));
+        pulseTimeouts.push(setTimeout(() => !cancelled && setPulse(false), 700));
+        pulseTimeouts.push(setTimeout(() => !cancelled && setJustStamped(null), 800));
       }
-      nextTimeout = setTimeout(tick, next === 7 ? 2200 : 1100);
+
+      // Slow down at the extremes so the eye can rest
+      const delay = next === 7 ? 2000 : next === 0 ? 1600 : direction === 1 ? 1300 : 700;
+      nextTimeout = setTimeout(tick, delay);
     };
 
-    nextTimeout = setTimeout(tick, 600);
+    nextTimeout = setTimeout(tick, 800);
     return () => {
       cancelled = true;
       clearTimeout(nextTimeout);
@@ -203,8 +211,8 @@ function HeroVisual() {
             </div>
           </div>
           <span
-            className={`rounded-full px-2 py-1 text-xs font-semibold text-success bg-success/10 transition-[transform,background-color] duration-500 ease-out ${
-              pulse ? "scale-110 !bg-success/25" : "scale-100"
+            className={`rounded-full px-2 py-1 text-xs font-semibold text-success bg-success/10 transition-[transform,background-color,opacity] duration-700 ease-out ${
+              pulse ? "scale-105 !bg-success/20 opacity-100" : "scale-100 opacity-70"
             }`}
             style={{ willChange: "transform" }}
           >
@@ -215,18 +223,20 @@ function HeroVisual() {
           {Array.from({ length: 10 }).map((_, i) => (
             <div
               key={i}
-              className={`aspect-square rounded-xl border-2 grid place-items-center text-lg transition-[background-color,border-color,transform,box-shadow] duration-[600ms] ${
+              className={`aspect-square rounded-xl border-2 grid place-items-center text-lg transition-[background-color,border-color,transform,box-shadow] duration-[800ms] ${
                 i < stamps
                   ? "border-solid border-primary bg-primary shadow-soft"
                   : "border-dashed border-border bg-muted/40"
-              } ${justStamped === i ? "scale-110" : "scale-100"}`}
+              } ${justStamped === i ? "scale-[1.06]" : "scale-100"}`}
               style={{
-                transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+                transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
                 willChange: justStamped === i ? "transform" : "auto",
               }}
             >
               <span
-                className={`transition-opacity duration-500 ${i < stamps ? "opacity-100" : "opacity-0"}`}
+                className={`transition-all duration-[700ms] ease-out ${
+                  i < stamps ? "opacity-100 scale-100" : "opacity-0 scale-75"
+                }`}
               >
                 ✓
               </span>
