@@ -20,9 +20,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Download, Trash2 } from "lucide-react";
+import { Download, Trash2, Volume2, Bell, Vibrate } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
-import { Volume2, Bell, Vibrate } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard/settings")({
   component: Settings,
