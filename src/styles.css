@@ -145,6 +145,20 @@
   }
   .bg-gradient-warm { background: var(--gradient-warm); }
   .bg-gradient-cta { background: var(--gradient-cta); }
+  .demo-phone-glow {
+    background:
+      radial-gradient(70% 70% at 50% 24%, color-mix(in oklch, var(--secondary) 18%, transparent) 0%, transparent 72%),
+      radial-gradient(78% 84% at 50% 78%, color-mix(in oklch, var(--primary) 26%, transparent) 0%, transparent 74%),
+      linear-gradient(in oklch 180deg, color-mix(in oklch, var(--primary) 10%, transparent) 0%, color-mix(in oklch, var(--secondary) 8%, transparent) 100%);
+    filter: blur(24px);
+    opacity: 0.72;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+  .demo-phone-shell {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .shadow-card { box-shadow: var(--shadow-card); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
