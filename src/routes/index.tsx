@@ -410,6 +410,11 @@ function Pricing() {
               <Button variant="cta" size="xl" className="w-full">Démarrer mon essai gratuit</Button>
             </Link>
             <p className="mt-3 text-center text-xs text-muted-foreground">Aucune carte bancaire requise</p>
+            <div className="mt-4 text-center">
+              <Link to="/tarifs" className="text-sm font-semibold text-secondary hover:underline">
+                Voir le détail du tarif et la FAQ →
+              </Link>
+            </div>
           </div>
         </div>
       </div>
