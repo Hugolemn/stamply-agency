@@ -7,7 +7,13 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/reset-password")({
-  head: () => ({ meta: [{ title: "Nouveau mot de passe · Tamply" }] }),
+  head: () => ({
+    meta: [
+      { title: "Nouveau mot de passe · Tamply" },
+      { name: "description", content: "Définissez un nouveau mot de passe pour votre compte Tamply." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: Reset,
 });
 

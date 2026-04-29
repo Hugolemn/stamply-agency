@@ -8,7 +8,13 @@ import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/login")({
-  head: () => ({ meta: [{ title: "Connexion · Tamply" }] }),
+  head: () => ({
+    meta: [
+      { title: "Connexion · Tamply" },
+      { name: "description", content: "Connectez-vous à votre espace Tamply pour gérer vos clients fidèles." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: Login,
 });
 

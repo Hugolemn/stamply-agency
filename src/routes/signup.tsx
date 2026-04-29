@@ -10,7 +10,17 @@ import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/signup")({
-  head: () => ({ meta: [{ title: "Inscription · Tamply" }] }),
+  head: () => ({
+    meta: [
+      { title: "Inscription · Tamply — 30 jours gratuits" },
+      {
+        name: "description",
+        content:
+          "Créez votre compte Tamply en 1 minute et lancez votre programme de fidélité digital. 30 jours d'essai gratuit, sans carte bancaire.",
+      },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: Signup,
 });
 

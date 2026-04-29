@@ -8,7 +8,17 @@ import { Loader2, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/c/$shopId")({
-  head: () => ({ meta: [{ title: "Carte de fidélité · Tamply" }] }),
+  head: () => ({
+    meta: [
+      { title: "Carte de fidélité · Tamply" },
+      {
+        name: "description",
+        content:
+          "Récupérez votre tampon de fidélité en quelques secondes. Aucune application à installer.",
+      },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: ClientFlow,
 });
 

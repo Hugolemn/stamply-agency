@@ -8,7 +8,13 @@ import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/forgot-password")({
-  head: () => ({ meta: [{ title: "Mot de passe oublié · Tamply" }] }),
+  head: () => ({
+    meta: [
+      { title: "Mot de passe oublié · Tamply" },
+      { name: "description", content: "Réinitialisez le mot de passe de votre compte Tamply en quelques secondes." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: Forgot,
 });
 
