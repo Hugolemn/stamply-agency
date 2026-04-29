@@ -173,7 +173,7 @@ function PricingCard() {
             <span className="text-muted-foreground">/mois</span>
           </div>
           <p className="mt-2 text-sm text-muted-foreground">
-            par établissement · TVA en sus
+            par établissement · HTVA
           </p>
 
           <div className="mt-4 flex items-start gap-3 rounded-xl border border-border/60 bg-muted/40 p-3">
