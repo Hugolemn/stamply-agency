@@ -90,7 +90,7 @@ function Header() {
     <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" />
+          <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" width="36" height="36" decoding="async" />
           <span className="text-xl font-extrabold tracking-tight">Tamply</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
@@ -480,7 +480,7 @@ function Footer() {
     <footer className="border-t border-border/60 bg-background py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground md:flex-row">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="Logo Tamply" className="h-7 w-7 object-contain" />
+          <img src={logo} alt="Logo Tamply" className="h-7 w-7 object-contain" width="28" height="28" loading="lazy" decoding="async" />
           <span className="font-bold text-foreground">Tamply</span>
           <span>· © {new Date().getFullYear()}</span>
         </div>

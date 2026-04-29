@@ -19,6 +19,10 @@ export const Route = createFileRoute("/demo")({
         content:
           "Une démo animée pour comprendre Tamply en 30 secondes : du scan client à la récompense.",
       },
+      { property: "og:image", content: "/og-image.jpg" },
+      { property: "og:url", content: "https://tamply.app/demo" },
+      { name: "twitter:title", content: "Démo Tamply — Voyez comment ça marche" },
+      { name: "twitter:description", content: "Une démo animée pour comprendre Tamply en 30 secondes." },
     ],
   }),
   component: DemoPage,
@@ -53,7 +57,7 @@ function DemoPage() {
       <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" />
+            <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" width="36" height="36" decoding="async" />
             <span className="text-xl font-extrabold tracking-tight">Tamply</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
