@@ -69,7 +69,7 @@ export function ShapeBox({ shape, filled, color, children, className = "" }: Sha
         </svg>
         {children ? (
           <div
-            className="absolute inset-0 grid place-items-center text-[55%] leading-none select-none"
+            className="absolute inset-0 grid place-items-center text-lg leading-none select-none"
             style={{ color: filled ? "#0a0a0a" : "color-mix(in oklab, var(--muted-foreground) 80%, transparent)" }}
           >
             {children}
@@ -83,7 +83,7 @@ export function ShapeBox({ shape, filled, color, children, className = "" }: Sha
   const radiusClass = shape === "circle" ? "rounded-full" : "rounded-xl";
   return (
     <div
-      className={`aspect-square w-full ${radiusClass} grid place-items-center text-[55%] leading-none border-2 transition-all ${className}`}
+      className={`aspect-square w-full ${radiusClass} grid place-items-center text-lg leading-none border-2 transition-all ${className}`}
       style={{
         background: filled ? color : "transparent",
         borderColor: filled ? color : "color-mix(in oklab, var(--muted-foreground) 35%, transparent)",
