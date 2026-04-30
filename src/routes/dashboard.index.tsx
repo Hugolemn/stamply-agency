@@ -58,7 +58,7 @@ function Overview() {
           <div className="text-sm">
             <b>Essai gratuit</b> — encore <b>{trialDays} jours</b>.
           </div>
-          <Link to="/dashboard/subscription" className="text-sm font-semibold text-secondary hover:underline">Activer l'abonnement →</Link>
+          <Link to="/dashboard/account" search={{ tab: "abonnement" }} className="text-sm font-semibold text-secondary hover:underline">Activer l'abonnement →</Link>
         </div>
       )}
 
