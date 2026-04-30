@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import confetti from "canvas-confetti";
 import { Loader2, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { ShapeBox, type StampShape as StampShapeType } from "@/components/stamp-shape";
 
 export const Route = createFileRoute("/c/$shopId")({
   head: () => ({
@@ -27,7 +26,6 @@ interface Shop {
   id: string; nom: string; logo_url: string | null; couleur: string;
   description_recompense: string; tampons_requis: number; stamp_emoji: string;
   card_template?: string | null;
-  stamp_shape?: string | null;
 }
 interface Customer { id: string; total_tampons: number; total_recompenses: number; }
 
@@ -49,7 +47,7 @@ function ClientFlow() {
     (async () => {
       const { data, error } = await supabase
         .from("shops")
-        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis, stamp_emoji, card_template, stamp_shape")
+        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis, stamp_emoji, card_template")
         .eq("id", shopId)
         .maybeSingle();
       if (error || !data) setShopErr(true);
@@ -285,7 +283,6 @@ function StampedStep({ shop, count, restart }: { shop: Shop; count: number; rest
             filled={progress}
             emoji={shop.stamp_emoji || "🍟"}
             color={shop.couleur}
-            shape={(shop.stamp_shape as StampShapeType) || "rounded"}
           />
         </div>
         <div className="mt-5 text-center">
@@ -310,17 +307,26 @@ function StampedStep({ shop, count, restart }: { shop: Shop; count: number; rest
 }
 
 function StampGrid({
-  total, filled, emoji, color, shape,
-}: { total: number; filled: number; emoji: string; color: string; shape: StampShapeType }) {
+  total, filled, emoji, color,
+}: { total: number; filled: number; emoji: string; color: string }) {
   const cols = total <= 10 ? 5 : total <= 16 ? 4 : 5;
   return (
     <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
       {Array.from({ length: total }).map((_, i) => {
         const done = i < filled;
         return (
-          <ShapeBox key={i} shape={shape} filled={done} color={color}>
+          <div
+            key={i}
+            className="aspect-square rounded-xl grid place-items-center text-lg leading-none border-2 transition-all"
+            style={{
+              background: done ? color : "transparent",
+              borderColor: done ? color : "color-mix(in oklab, var(--muted-foreground) 35%, transparent)",
+              borderStyle: done ? "solid" : "dashed",
+              color: done ? "#0a0a0a" : "color-mix(in oklab, var(--muted-foreground) 80%, transparent)",
+            }}
+          >
             {done ? emoji : ""}
-          </ShapeBox>
+          </div>
         );
       })}
     </div>
