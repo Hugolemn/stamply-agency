@@ -151,3 +151,114 @@ function OverviewSkeleton() {
     </div>
   );
 }
+
+type OnbStats = { clients: number; tamponsAujourdhui: number; recompensesMois: number; pending: number };
+
+function OnboardingChecklist({
+  shop,
+  stats,
+  statsLoading,
+}: {
+  shop: { id: string; logo_url: string | null; description_recompense: string; nom: string };
+  stats: OnbStats;
+  statsLoading: boolean;
+}) {
+  const storageKey = `tamply:onboarding-dismissed:${shop.id}`;
+  const [dismissed, setDismissed] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem(storageKey) === "1";
+  });
+
+  const steps = [
+    {
+      label: "Personnaliser votre établissement",
+      done: Boolean(shop.logo_url) && Boolean(shop.description_recompense) && shop.nom.trim().length > 0,
+      to: "/dashboard/settings" as const,
+    },
+    {
+      label: "Afficher votre QR code au comptoir",
+      done: stats.clients > 0,
+      to: "/dashboard/qr" as const,
+    },
+    {
+      label: "Valider votre premier tampon",
+      done: stats.tamponsAujourdhui > 0 || stats.clients > 0,
+      to: "/dashboard/validation" as const,
+    },
+    {
+      label: "Inviter votre premier client à scanner",
+      done: stats.clients > 0,
+      to: "/dashboard/qr" as const,
+    },
+  ];
+
+  const completed = steps.filter((s) => s.done).length;
+  const total = steps.length;
+  const allDone = completed === total;
+
+  // Auto-hide forever once everything is done
+  useEffect(() => {
+    if (allDone && typeof window !== "undefined") {
+      window.localStorage.setItem(storageKey, "1");
+    }
+  }, [allDone, storageKey]);
+
+  if (statsLoading || dismissed || allDone) return null;
+
+  const pct = Math.round((completed / total) * 100);
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card">
+      <div className="flex items-start justify-between gap-3 border-b border-border/60 bg-gradient-hero p-4">
+        <div className="flex items-center gap-3">
+          <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-gradient-cta shadow-soft">
+            <Rocket className="h-5 w-5 text-foreground" />
+          </div>
+          <div>
+            <div className="text-sm font-extrabold">Bien démarrer avec Tamply</div>
+            <div className="text-xs text-muted-foreground">{completed}/{total} étapes complétées</div>
+          </div>
+        </div>
+        <button
+          onClick={() => {
+            window.localStorage.setItem(storageKey, "1");
+            setDismissed(true);
+          }}
+          className="rounded-md p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+          aria-label="Masquer le guide"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+
+      <div className="px-4 pt-3">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+          <div className="h-full bg-secondary transition-all" style={{ width: `${pct}%` }} />
+        </div>
+      </div>
+
+      <ul className="divide-y divide-border/60 p-2">
+        {steps.map((s) => (
+          <li key={s.label}>
+            <Link
+              to={s.to}
+              className="flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition hover:bg-muted/60"
+            >
+              <div className="flex items-center gap-3">
+                {s.done ? (
+                  <CheckCircle2 className="h-5 w-5 text-secondary" />
+                ) : (
+                  <Circle className="h-5 w-5 text-muted-foreground/60" />
+                )}
+                <span className={`text-sm ${s.done ? "text-muted-foreground line-through" : "font-semibold"}`}>
+                  {s.label}
+                </span>
+              </div>
+              {!s.done && <ArrowRight className="h-4 w-4 text-muted-foreground" />}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
