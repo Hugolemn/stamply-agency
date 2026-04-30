@@ -89,6 +89,7 @@ export type Database = {
           nom: string
           owner_id: string
           owner_nom: string | null
+          qr_displayed_at: string | null
           stamp_emoji: string
           statut_abonnement: string
           stripe_customer_id: string | null
@@ -104,6 +105,7 @@ export type Database = {
           nom: string
           owner_id: string
           owner_nom?: string | null
+          qr_displayed_at?: string | null
           stamp_emoji?: string
           statut_abonnement?: string
           stripe_customer_id?: string | null
@@ -119,6 +121,7 @@ export type Database = {
           nom?: string
           owner_id?: string
           owner_nom?: string | null
+          qr_displayed_at?: string | null
           stamp_emoji?: string
           statut_abonnement?: string
           stripe_customer_id?: string | null
