@@ -1,0 +1,1 @@
+ALTER TABLE public.shops ADD COLUMN qr_displayed_at timestamp with time zone;
