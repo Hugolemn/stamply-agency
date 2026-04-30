@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import { Download, Volume2, Bell, Vibrate, Upload, ImageIcon, Trash2, Loader2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShapeBox, STAMP_SHAPES, type StampShape } from "@/components/stamp-shape";
 
 const EMOJI_CATEGORIES: { id: string; label: string; emojis: string[] }[] = [
   {
@@ -56,15 +55,7 @@ const PRESET_COLORS = [
 
 export function SettingsContent() {
   const { shop, refresh } = useShop();
-  const [form, setForm] = useState({
-    nom: "",
-    description_recompense: "",
-    tampons_requis: 10,
-    couleur: "#FFD700",
-    logo_url: "",
-    stamp_emoji: "🍟",
-    stamp_shape: "rounded" as StampShape,
-  });
+  const [form, setForm] = useState({ nom: "", description_recompense: "", tampons_requis: 10, couleur: "#FFD700", logo_url: "", stamp_emoji: "🍟" });
   const [saving, setSaving] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [uploadingLogo, setUploadingLogo] = useState(false);
@@ -132,7 +123,6 @@ export function SettingsContent() {
       couleur: shop.couleur,
       logo_url: shop.logo_url ?? "",
       stamp_emoji: (shop as any).stamp_emoji ?? "🍟",
-      stamp_shape: (((shop as any).stamp_shape as StampShape) ?? "rounded"),
     });
   }, [shop]);
 
@@ -146,7 +136,6 @@ export function SettingsContent() {
       couleur: form.couleur,
       logo_url: form.logo_url.trim() || null,
       stamp_emoji: form.stamp_emoji || "🍟",
-      stamp_shape: form.stamp_shape,
     }).eq("id", shop.id);
     setSaving(false);
     if (error) { toast.error(error.message); return; }
