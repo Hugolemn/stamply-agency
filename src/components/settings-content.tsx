@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Download, Volume2, Bell, Vibrate, Upload, ImageIcon, Trash2, Loader2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ShapeBox, STAMP_SHAPES, type StampShape } from "@/components/stamp-shape";
 
 const EMOJI_CATEGORIES: { id: string; label: string; emojis: string[] }[] = [
   {
@@ -55,7 +56,15 @@ const PRESET_COLORS = [
 
 export function SettingsContent() {
   const { shop, refresh } = useShop();
-  const [form, setForm] = useState({ nom: "", description_recompense: "", tampons_requis: 10, couleur: "#FFD700", logo_url: "", stamp_emoji: "🍟" });
+  const [form, setForm] = useState({
+    nom: "",
+    description_recompense: "",
+    tampons_requis: 10,
+    couleur: "#FFD700",
+    logo_url: "",
+    stamp_emoji: "🍟",
+    stamp_shape: "rounded" as StampShape,
+  });
   const [saving, setSaving] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [uploadingLogo, setUploadingLogo] = useState(false);
@@ -123,6 +132,7 @@ export function SettingsContent() {
       couleur: shop.couleur,
       logo_url: shop.logo_url ?? "",
       stamp_emoji: (shop as any).stamp_emoji ?? "🍟",
+      stamp_shape: (((shop as any).stamp_shape as StampShape) ?? "rounded"),
     });
   }, [shop]);
 
@@ -136,6 +146,7 @@ export function SettingsContent() {
       couleur: form.couleur,
       logo_url: form.logo_url.trim() || null,
       stamp_emoji: form.stamp_emoji || "🍟",
+      stamp_shape: form.stamp_shape,
     }).eq("id", shop.id);
     setSaving(false);
     if (error) { toast.error(error.message); return; }
@@ -405,6 +416,38 @@ export function SettingsContent() {
               </TabsContent>
             ))}
           </Tabs>
+        </div>
+
+        <div>
+          <Label className="mb-1.5 block text-sm font-semibold">Forme des tampons</Label>
+          <p className="mb-3 text-xs text-muted-foreground">
+            Choisissez la forme des cases qui apparaissent sur la carte de fidélité de vos clients.
+          </p>
+          <div className="grid grid-cols-5 gap-3 rounded-2xl border border-border/60 bg-muted/20 p-4">
+            {STAMP_SHAPES.map((s) => {
+              const active = form.stamp_shape === s.id;
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => setForm({ ...form, stamp_shape: s.id })}
+                  className={`flex flex-col items-center gap-2 rounded-xl border-2 p-2 transition hover:scale-105 ${
+                    active ? "border-primary bg-primary/10" : "border-transparent bg-background"
+                  }`}
+                  aria-label={s.label}
+                >
+                  <div className="w-10">
+                    <ShapeBox shape={s.id} filled color={form.couleur}>
+                      <span className="text-base">{form.stamp_emoji || "🍟"}</span>
+                    </ShapeBox>
+                  </div>
+                  <span className="text-[10px] font-semibold leading-tight text-muted-foreground">
+                    {s.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
