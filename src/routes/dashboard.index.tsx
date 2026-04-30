@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useShop } from "@/lib/use-shop";
-import { Users, CheckCircle2, Gift, Calendar, ArrowRight, QrCode, Sparkles, Rocket, X, Circle } from "lucide-react";
+import { Users, CheckCircle2, Gift, Calendar, ArrowRight, QrCode, Sparkles, Rocket, Circle } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/dashboard/")({
@@ -163,12 +163,6 @@ function OnboardingChecklist({
   stats: OnbStats;
   statsLoading: boolean;
 }) {
-  const storageKey = `tamply:onboarding-dismissed:${shop.id}`;
-  const [dismissed, setDismissed] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return window.localStorage.getItem(storageKey) === "1";
-  });
-
   const steps = [
     {
       label: "Personnaliser votre établissement",
@@ -196,14 +190,7 @@ function OnboardingChecklist({
   const total = steps.length;
   const allDone = completed === total;
 
-  // Auto-hide forever once everything is done
-  useEffect(() => {
-    if (allDone && typeof window !== "undefined") {
-      window.localStorage.setItem(storageKey, "1");
-    }
-  }, [allDone, storageKey]);
-
-  if (statsLoading || dismissed || allDone) return null;
+  if (statsLoading || allDone) return null;
 
   const pct = Math.round((completed / total) * 100);
 
@@ -219,16 +206,6 @@ function OnboardingChecklist({
             <div className="text-xs text-muted-foreground">{completed}/{total} étapes complétées</div>
           </div>
         </div>
-        <button
-          onClick={() => {
-            window.localStorage.setItem(storageKey, "1");
-            setDismissed(true);
-          }}
-          className="rounded-md p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
-          aria-label="Masquer le guide"
-        >
-          <X className="h-4 w-4" />
-        </button>
       </div>
 
       <div className="px-4 pt-3">
