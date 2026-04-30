@@ -341,48 +341,8 @@ function Settings() {
           </Button>
         </div>
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-xl border border-destructive/40 bg-destructive/5 p-4">
-          <div className="flex-1">
-            <p className="font-semibold text-sm text-destructive">Supprimer mon compte</p>
-            <p className="mt-0.5 text-xs text-muted-foreground">
-              Supprime définitivement votre compte, votre établissement et toutes les données associées. Action irréversible.
-            </p>
-          </div>
-          <AlertDialog onOpenChange={(o) => !o && setConfirmText("")}>
-            <AlertDialogTrigger asChild>
-              <Button variant="destructive" className="shrink-0">
-                <Trash2 className="mr-2 h-4 w-4" />
-                Supprimer
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Supprimer définitivement votre compte ?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Cette action est <strong>irréversible</strong>. Toutes vos données seront effacées :
-                  votre compte, votre établissement <strong>{shop.nom}</strong>, vos clients et l'historique des tampons.
-                  <br /><br />
-                  Pour confirmer, tapez <strong>SUPPRIMER</strong> ci-dessous :
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <Input
-                value={confirmText}
-                onChange={(e) => setConfirmText(e.target.value)}
-                placeholder="SUPPRIMER"
-                className="h-11 rounded-xl"
-              />
-              <AlertDialogFooter>
-                <AlertDialogCancel disabled={deleting}>Annuler</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={(e) => { e.preventDefault(); deleteAccount(); }}
-                  disabled={confirmText !== "SUPPRIMER" || deleting}
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                >
-                  {deleting ? "Suppression…" : "Supprimer définitivement"}
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+        <div className="rounded-xl border border-border/60 bg-muted/30 p-4 text-xs text-muted-foreground">
+          La suppression de compte est désormais disponible dans <strong>Mon compte → Zone dangereuse</strong>.
         </div>
       </div>
     </div>
