@@ -189,3 +189,31 @@
   100% { box-shadow: 0 0 0 14px oklch(0.62 0.22 22 / 0); }
 }
 .animate-ring-flash { animation: ring-flash 900ms ease-out 1; }
+
+/* Curseur "main" sur tous les éléments interactifs */
+button:not(:disabled),
+a[href],
+[role="button"]:not([aria-disabled="true"]),
+[role="link"],
+[role="tab"],
+[role="menuitem"],
+[role="option"],
+[role="switch"],
+[role="checkbox"],
+[role="radio"],
+label[for],
+summary,
+select:not(:disabled),
+input[type="button"]:not(:disabled),
+input[type="submit"]:not(:disabled),
+input[type="reset"]:not(:disabled),
+input[type="checkbox"]:not(:disabled),
+input[type="radio"]:not(:disabled),
+input[type="file"]:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
