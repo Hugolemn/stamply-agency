@@ -51,6 +51,8 @@ function Overview() {
         <p className="mt-1 text-sm text-muted-foreground">{shop.nom}</p>
       </div>
 
+      <OnboardingChecklist shop={shop} stats={stats} statsLoading={statsLoading} />
+
       {shop.statut_abonnement === "essai" && (
         <div className="flex items-center justify-between rounded-2xl border border-border/60 bg-card p-4 shadow-card">
           <div className="text-sm">
