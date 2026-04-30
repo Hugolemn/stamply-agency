@@ -168,6 +168,7 @@ function OnboardingChecklist({
       label: "Personnaliser votre établissement",
       done: Boolean(shop.logo_url) && Boolean(shop.description_recompense) && shop.nom.trim().length > 0,
       to: "/dashboard/account" as const,
+      search: { tab: "parametres" } as const,
     },
     {
       label: "Afficher votre QR code au comptoir",
@@ -219,6 +220,7 @@ function OnboardingChecklist({
           <li key={s.label}>
             <Link
               to={s.to}
+              search={(s as any).search}
               className="flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition hover:bg-muted/60"
             >
               <div className="flex items-center gap-3">
