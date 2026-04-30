@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import confetti from "canvas-confetti";
 import { Loader2, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { ShapeBox, type StampShape as StampShapeType } from "@/components/stamp-shape";
 
 export const Route = createFileRoute("/c/$shopId")({
   head: () => ({
@@ -25,6 +26,8 @@ export const Route = createFileRoute("/c/$shopId")({
 interface Shop {
   id: string; nom: string; logo_url: string | null; couleur: string;
   description_recompense: string; tampons_requis: number; stamp_emoji: string;
+  card_template?: string | null;
+  stamp_shape?: string | null;
 }
 interface Customer { id: string; total_tampons: number; total_recompenses: number; }
 
@@ -46,7 +49,7 @@ function ClientFlow() {
     (async () => {
       const { data, error } = await supabase
         .from("shops")
-        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis, stamp_emoji")
+        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis, stamp_emoji, card_template, stamp_shape")
         .eq("id", shopId)
         .maybeSingle();
       if (error || !data) setShopErr(true);
