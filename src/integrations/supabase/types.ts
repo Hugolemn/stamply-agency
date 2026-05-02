@@ -154,6 +154,7 @@ export type Database = {
           customer_id: string
           id: string
           montant_achat: number | null
+          nb_tampons: number
           numero_telephone: string
           shop_id: string
           statut: Database["public"]["Enums"]["stamp_status"]
@@ -164,6 +165,7 @@ export type Database = {
           customer_id: string
           id?: string
           montant_achat?: number | null
+          nb_tampons?: number
           numero_telephone: string
           shop_id: string
           statut?: Database["public"]["Enums"]["stamp_status"]
@@ -174,6 +176,7 @@ export type Database = {
           customer_id?: string
           id?: string
           montant_achat?: number | null
+          nb_tampons?: number
           numero_telephone?: string
           shop_id?: string
           statut?: Database["public"]["Enums"]["stamp_status"]
