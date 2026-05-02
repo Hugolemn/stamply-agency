@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import confetti from "canvas-confetti";
-import { Loader2, Phone } from "lucide-react";
+import { Loader2, Phone, Euro } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/c/$shopId")({
@@ -26,8 +26,12 @@ interface Shop {
   id: string; nom: string; logo_url: string | null; couleur: string;
   description_recompense: string; tampons_requis: number; stamp_emoji: string;
   card_template?: string | null;
+  loyalty_mode?: "tampons" | "points";
+  montant_tranche?: number;
+  points_par_tranche?: number;
+  points_requis?: number;
 }
-interface Customer { id: string; total_tampons: number; total_recompenses: number; }
+interface Customer { id: string; total_tampons: number; total_points: number; total_recompenses: number; }
 
 type Step = "phone" | "waiting" | "stamped" | "reward" | "refused" | "timeout";
 
@@ -36,6 +40,7 @@ function ClientFlow() {
   const [shop, setShop] = useState<Shop | null>(null);
   const [shopErr, setShopErr] = useState(false);
   const [phone, setPhone] = useState("");
+  const [montant, setMontant] = useState("");
   const [step, setStep] = useState<Step>("phone");
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [reqId, setReqId] = useState<string | null>(null);
@@ -47,7 +52,7 @@ function ClientFlow() {
     (async () => {
       const { data, error } = await supabase
         .from("shops")
-        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis, stamp_emoji, card_template")
+        .select("id, nom, logo_url, couleur, description_recompense, tampons_requis, stamp_emoji, card_template, loyalty_mode, montant_tranche, points_par_tranche, points_requis")
         .eq("id", shopId)
         .maybeSingle();
       if (error || !data) setShopErr(true);
@@ -69,11 +74,11 @@ function ClientFlow() {
           if (row.statut === "valide") {
             // Reload customer
             const { data: c } = await supabase
-              .from("customers").select("id, total_tampons, total_recompenses").eq("id", customer.id).maybeSingle();
+              .from("customers").select("id, total_tampons, total_points, total_recompenses").eq("id", customer.id).maybeSingle();
             if (c) setCustomer(c as Customer);
             const updated = (c as Customer) ?? customer;
-            // Reward attribution = total_recompenses augmenté OU compteur retombé à 0
-            if ((c?.total_recompenses ?? customer.total_recompenses) > customer.total_recompenses || updated.total_tampons === 0) {
+            // Reward attribution = total_recompenses augmenté
+            if ((c?.total_recompenses ?? customer.total_recompenses) > customer.total_recompenses) {
               setStep("reward");
               setTimeout(() => fireConfetti(), 50);
             } else {
@@ -109,11 +114,16 @@ function ClientFlow() {
     if (!shop) return;
     const cleaned = phone.trim();
     if (cleaned.length < 6 || cleaned.length > 20) { return; }
+    const isPoints = shop.loyalty_mode === "points";
+    const montantNum = isPoints ? Number(montant.replace(",", ".")) : null;
+    if (isPoints && (!montantNum || montantNum <= 0 || montantNum > 100000)) {
+      return;
+    }
     setSubmitting(true);
 
     // Find existing or create
     const { data: existing } = await supabase
-      .from("customers").select("id, total_tampons, total_recompenses")
+      .from("customers").select("id, total_tampons, total_points, total_recompenses")
       .eq("shop_id", shop.id).eq("numero_telephone", cleaned).maybeSingle();
 
     let cust = existing as Customer | null;
@@ -121,14 +131,19 @@ function ClientFlow() {
       const { data: created, error } = await supabase
         .from("customers")
         .insert({ shop_id: shop.id, numero_telephone: cleaned })
-        .select("id, total_tampons, total_recompenses").single();
+        .select("id, total_tampons, total_points, total_recompenses").single();
       if (error || !created) { setSubmitting(false); return; }
       cust = created as Customer;
     }
 
     const { data: req, error: reqErr } = await supabase
       .from("stamp_requests")
-      .insert({ shop_id: shop.id, customer_id: cust.id, numero_telephone: cleaned })
+      .insert({
+        shop_id: shop.id,
+        customer_id: cust.id,
+        numero_telephone: cleaned,
+        montant_achat: isPoints ? montantNum : null,
+      })
       .select("id").single();
     setSubmitting(false);
     if (reqErr || !req) return;
@@ -137,7 +152,7 @@ function ClientFlow() {
     setStep("waiting");
   };
 
-  const restart = () => { setStep("phone"); setPhone(""); setCustomer(null); setReqId(null); };
+  const restart = () => { setStep("phone"); setPhone(""); setMontant(""); setCustomer(null); setReqId(null); };
 
   if (shopErr) {
     return (
@@ -158,11 +173,16 @@ function ClientFlow() {
     <Wrapper>
       <Header shop={shop} />
       {step === "phone" && (
-        <PhoneStep phone={phone} setPhone={setPhone} submit={submitPhone} submitting={submitting} />
+        <PhoneStep
+          shop={shop}
+          phone={phone} setPhone={setPhone}
+          montant={montant} setMontant={setMontant}
+          submit={submitPhone} submitting={submitting}
+        />
       )}
       {step === "waiting" && <WaitingStep />}
       {step === "stamped" && customer && (
-        <StampedStep shop={shop} count={customer.total_tampons} restart={restart} />
+        <StampedStep shop={shop} customer={customer} restart={restart} />
       )}
       {step === "reward" && (
         <RewardStep shop={shop} restart={restart} />
