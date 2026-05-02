@@ -25,6 +25,7 @@ function Validation() {
   const [busy, setBusy] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
   const [newIds, setNewIds] = useState<Set<string>>(new Set());
+  const [stampCounts, setStampCounts] = useState<Record<string, number>>({});
   const [soundOn, setSoundOn] = useState(true);
   const [notifOn, setNotifOn] = useState(false);
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -222,7 +223,12 @@ function Validation() {
 
   const decide = async (id: string, statut: "valide" | "refuse") => {
     setBusy((b) => ({ ...b, [id]: true }));
-    const { error } = await supabase.from("stamp_requests").update({ statut }).eq("id", id);
+    const payload: Record<string, unknown> = { statut };
+    if (statut === "valide") {
+      const n = Math.max(1, Math.min(50, stampCounts[id] ?? 1));
+      payload.nb_tampons = n;
+    }
+    const { error } = await supabase.from("stamp_requests").update(payload).eq("id", id);
     setBusy((b) => ({ ...b, [id]: false }));
     if (error) { toast.error(error.message); return; }
     setRequests((r) => r.filter((x) => x.id !== id));
@@ -297,6 +303,8 @@ function Validation() {
             const pointsGagnes = isPoints && r.montant_achat != null
               ? Math.floor(Number(r.montant_achat) / Math.max(0.01, montantTranche)) * pointsParTranche
               : 0;
+            const nbTampons = stampCounts[r.id] ?? 1;
+            const setNb = (n: number) => setStampCounts((s) => ({ ...s, [r.id]: Math.max(1, Math.min(50, n)) }));
 
             return (
               <div
@@ -347,7 +355,7 @@ function Validation() {
                         </div>
                         {!isPoints && (
                           <div className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-1">
-                            1 tampon à ajouter
+                            {nbTampons} tampon{nbTampons > 1 ? "s" : ""} à ajouter
                           </div>
                         )}
                       </div>
@@ -371,14 +379,38 @@ function Validation() {
                     ) : (
                       <>
                         <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                          Validation
+                          Nombre de tampons
                         </div>
-                        <div className="mt-2 flex items-end gap-2">
-                          <span className="text-4xl font-extrabold leading-none text-foreground">+1</span>
-                          <span className="pb-1 text-sm font-semibold text-muted-foreground">tampon</span>
+                        <div className="mt-2 flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setNb(nbTampons - 1)}
+                            disabled={nbTampons <= 1 || busy[r.id]}
+                            className="grid h-10 w-10 place-items-center rounded-xl border border-border/60 bg-background text-lg font-bold text-foreground shadow-card transition hover:bg-muted disabled:opacity-40"
+                            aria-label="Diminuer"
+                          >
+                            −
+                          </button>
+                          <input
+                            type="number"
+                            min={1}
+                            max={50}
+                            value={nbTampons}
+                            onChange={(e) => setNb(parseInt(e.target.value, 10) || 1)}
+                            className="h-10 w-16 rounded-xl border border-border/60 bg-background text-center text-xl font-extrabold text-foreground shadow-card outline-none focus:ring-2 focus:ring-secondary"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setNb(nbTampons + 1)}
+                            disabled={nbTampons >= 50 || busy[r.id]}
+                            className="grid h-10 w-10 place-items-center rounded-xl border border-border/60 bg-background text-lg font-bold text-foreground shadow-card transition hover:bg-muted disabled:opacity-40"
+                            aria-label="Augmenter"
+                          >
+                            +
+                          </button>
                         </div>
-                        <div className="mt-3 rounded-2xl bg-background/80 px-3 py-2 text-sm font-medium text-muted-foreground shadow-card">
-                          Le client recevra son tampon dès confirmation.
+                        <div className="mt-3 rounded-2xl bg-background/80 px-3 py-2 text-xs font-medium text-muted-foreground shadow-card">
+                          +{nbTampons} tampon{nbTampons > 1 ? "s" : ""} ajouté{nbTampons > 1 ? "s" : ""} après validation.
                         </div>
                       </>
                     )}
