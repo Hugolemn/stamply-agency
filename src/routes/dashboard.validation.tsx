@@ -223,11 +223,8 @@ function Validation() {
 
   const decide = async (id: string, statut: "valide" | "refuse") => {
     setBusy((b) => ({ ...b, [id]: true }));
-    const payload: Record<string, unknown> = { statut };
-    if (statut === "valide") {
-      const n = Math.max(1, Math.min(50, stampCounts[id] ?? 1));
-      payload.nb_tampons = n;
-    }
+    const n = Math.max(1, Math.min(50, stampCounts[id] ?? 1));
+    const payload = statut === "valide" ? { statut, nb_tampons: n } : { statut };
     const { error } = await supabase.from("stamp_requests").update(payload).eq("id", id);
     setBusy((b) => ({ ...b, [id]: false }));
     if (error) { toast.error(error.message); return; }
