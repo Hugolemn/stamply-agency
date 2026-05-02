@@ -296,40 +296,61 @@ function Validation() {
           {requests.map((r) => (
             <div
               key={r.id}
-              className={`rounded-2xl border bg-card p-4 shadow-card ${
+              className={`group relative overflow-hidden rounded-3xl border bg-card shadow-card transition hover:shadow-soft ${
                 newIds.has(r.id)
                   ? "border-secondary/60 animate-pop-in animate-ring-flash"
                   : "border-border/60"
               }`}
             >
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground">Client</div>
-                    {newIds.has(r.id) && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-secondary-foreground">
-                        <Sparkles className="h-3 w-3" /> Nouveau
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-0.5 text-2xl font-extrabold tracking-tight">{r.numero_telephone}</div>
-                  <div className="mt-1 text-xs text-muted-foreground">
-                    Demande à {new Date(r.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
-                  </div>
+              {/* Bandeau "Nouveau" */}
+              {newIds.has(r.id) && (
+                <div className="absolute right-0 top-0 flex items-center gap-1 rounded-bl-2xl bg-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary-foreground shadow-soft">
+                  <Sparkles className="h-3 w-3" /> Nouveau
                 </div>
-                {isPoints && r.montant_achat != null && (
-                  <div className="text-right">
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground">Montant</div>
-                    <div className="mt-0.5 text-2xl font-extrabold tracking-tight text-foreground">
-                      {Number(r.montant_achat).toFixed(2)} €
+              )}
+
+              <div className="p-5">
+                <div className="flex items-start gap-4">
+                  {/* Avatar */}
+                  <div className="grid h-12 w-12 flex-none place-items-center rounded-2xl bg-gradient-cta shadow-soft">
+                    <User className="h-6 w-6 text-foreground" />
+                  </div>
+
+                  {/* Infos client */}
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Client
                     </div>
-                    <div className="mt-1 text-xs font-semibold text-secondary">
-                      = {Math.floor(Number(r.montant_achat) / Math.max(0.01, montantTranche)) * pointsParTranche} pts
+                    <div className="mt-0.5 truncate text-xl font-extrabold tracking-tight sm:text-2xl">
+                      {r.numero_telephone}
+                    </div>
+                    <div className="mt-1 inline-flex items-center gap-1 text-xs text-muted-foreground">
+                      <Clock className="h-3 w-3" />
+                      {new Date(r.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
                     </div>
                   </div>
-                )}
+
+                  {/* Montant (mode points) */}
+                  {isPoints && r.montant_achat != null && (
+                    <div className="flex-none rounded-2xl border border-border/60 bg-muted/40 px-3 py-2 text-right">
+                      <div className="flex items-center justify-end gap-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        <Receipt className="h-3 w-3" /> Montant
+                      </div>
+                      <div className="mt-0.5 text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
+                        {Number(r.montant_achat).toFixed(2)} €
+                      </div>
+                      <div className="mt-0.5 text-[11px] font-bold text-secondary">
+                        +{Math.floor(Number(r.montant_achat) / Math.max(0.01, montantTranche)) * pointsParTranche} pts
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="mt-4 grid grid-cols-2 gap-3">
+
+              {/* Séparateur */}
+              <div className="h-px w-full bg-border/60" />
+
+              <div className="grid grid-cols-2 gap-2 p-3 sm:gap-3 sm:p-4">
                 <Button
                   variant="refuse" size="huge"
                   disabled={busy[r.id]}
