@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useShop } from "@/lib/use-shop";
 import { Button } from "@/components/ui/button";
-import { Check, X, Inbox, Volume2, VolumeX, Sparkles, Bell, BellOff } from "lucide-react";
+import { Check, X, Inbox, Volume2, VolumeX, Sparkles, Bell, BellOff, Clock, User, Receipt } from "lucide-react";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
