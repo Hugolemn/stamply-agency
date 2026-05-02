@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useShop } from "@/lib/use-shop";
 import { Button } from "@/components/ui/button";
-import { Check, X, Inbox, Volume2, VolumeX, Sparkles, Bell, BellOff, Clock, User, Receipt } from "lucide-react";
+import { Check, X, Inbox, Volume2, VolumeX, Sparkles, Bell, BellOff, Clock, User, Receipt, Plus, Minus } from "lucide-react";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -378,15 +378,17 @@ function Validation() {
                         <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                           Nombre de tampons à ajouter
                         </div>
-                        <div className="mt-2 flex items-center justify-between gap-2 rounded-2xl bg-background/80 p-1.5 shadow-card">
+                        <div className="mt-2 flex items-center justify-between gap-2 rounded-2xl border border-border/60 bg-background/80 p-1.5 shadow-card">
                           <button
                             type="button"
                             onClick={() => setNb(nbTampons - 1)}
                             disabled={nbTampons <= 1 || busy[r.id]}
-                            className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-muted text-2xl font-bold text-foreground transition hover:bg-muted/70 disabled:opacity-40"
+                            className="flex h-11 w-14 flex-none items-center justify-center gap-1 rounded-xl border border-border/60 bg-card text-sm font-extrabold text-foreground transition hover:bg-muted disabled:opacity-40"
                             aria-label="Diminuer"
+                            title="Retirer 1 tampon"
                           >
-                            −
+                            <Minus className="h-4 w-4" />
+                            <span>-1</span>
                           </button>
                           <input
                             type="number"
@@ -400,10 +402,12 @@ function Validation() {
                             type="button"
                             onClick={() => setNb(nbTampons + 1)}
                             disabled={nbTampons >= 50 || busy[r.id]}
-                            className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-secondary text-2xl font-bold text-secondary-foreground transition hover:opacity-90 disabled:opacity-40"
+                            className="flex h-11 w-14 flex-none items-center justify-center gap-1 rounded-xl bg-secondary text-sm font-extrabold text-secondary-foreground transition hover:opacity-90 disabled:opacity-40"
                             aria-label="Augmenter"
+                            title="Ajouter 1 tampon"
                           >
-                            +
+                            <Plus className="h-4 w-4" />
+                            <span>+1</span>
                           </button>
                         </div>
                         <div className="mt-2 flex flex-wrap gap-1.5">
