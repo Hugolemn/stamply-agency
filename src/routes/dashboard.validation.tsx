@@ -293,81 +293,121 @@ function Validation() {
         </div>
       ) : (
         <div className="space-y-3">
-          {requests.map((r) => (
-            <div
-              key={r.id}
-              className={`group relative overflow-hidden rounded-3xl border bg-card shadow-card transition hover:shadow-soft ${
-                newIds.has(r.id)
-                  ? "border-secondary/60 animate-pop-in animate-ring-flash"
-                  : "border-border/60"
-              }`}
-            >
-              {/* Bandeau "Nouveau" */}
-              {newIds.has(r.id) && (
-                <div className="absolute right-0 top-0 flex items-center gap-1 rounded-bl-2xl bg-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary-foreground shadow-soft">
-                  <Sparkles className="h-3 w-3" /> Nouveau
-                </div>
-              )}
+          {requests.map((r) => {
+            const pointsGagnes = isPoints && r.montant_achat != null
+              ? Math.floor(Number(r.montant_achat) / Math.max(0.01, montantTranche)) * pointsParTranche
+              : 0;
 
-              <div className="p-5">
-                <div className="flex items-start gap-4">
-                  {/* Avatar */}
-                  <div className="grid h-12 w-12 flex-none place-items-center rounded-2xl bg-gradient-cta shadow-soft">
-                    <User className="h-6 w-6 text-foreground" />
+            return (
+              <div
+                key={r.id}
+                className={`group relative overflow-hidden rounded-[28px] border bg-card shadow-card transition duration-200 hover:-translate-y-0.5 hover:shadow-soft ${
+                  newIds.has(r.id)
+                    ? "border-secondary/60 animate-pop-in animate-ring-flash"
+                    : "border-border/60"
+                }`}
+              >
+                <div className="absolute inset-y-0 left-0 w-1.5 bg-secondary/75" />
+
+                <div className="border-b border-border/60 px-5 py-3.5">
+                  <div className="flex flex-wrap items-center justify-between gap-2 pl-2">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/40 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                      <Clock className="h-3.5 w-3.5" />
+                      À traiter maintenant
+                    </div>
+
+                    {newIds.has(r.id) ? (
+                      <div className="inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-secondary-foreground shadow-soft">
+                        <Sparkles className="h-3.5 w-3.5" /> Nouveau
+                      </div>
+                    ) : (
+                      <div className="text-xs font-semibold text-muted-foreground">
+                        {new Date(r.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid gap-4 p-5 pl-7 md:grid-cols-[minmax(0,1fr)_220px] md:items-center">
+                  <div className="flex min-w-0 items-start gap-4">
+                    <div className="grid h-13 w-13 flex-none place-items-center rounded-2xl bg-gradient-cta shadow-soft">
+                      <User className="h-6 w-6 text-foreground" />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        Client
+                      </div>
+                      <div className="mt-1 truncate text-xl font-extrabold sm:text-[1.7rem]">
+                        {r.numero_telephone}
+                      </div>
+                      <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-medium text-muted-foreground">
+                        <div className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-1">
+                          Demande reçue à {new Date(r.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
+                        </div>
+                        {!isPoints && (
+                          <div className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-1">
+                            1 tampon à ajouter
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Infos client */}
-                  <div className="min-w-0 flex-1">
-                    <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                      Client
-                    </div>
-                    <div className="mt-0.5 truncate text-xl font-extrabold tracking-tight sm:text-2xl">
-                      {r.numero_telephone}
-                    </div>
-                    <div className="mt-1 inline-flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="h-3 w-3" />
-                      {new Date(r.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
-                    </div>
+                  <div className="rounded-3xl border border-border/60 bg-muted/30 p-4">
+                    {isPoints && r.montant_achat != null ? (
+                      <>
+                        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                          <Receipt className="h-3.5 w-3.5" />
+                          Achat déclaré
+                        </div>
+                        <div className="mt-2 text-3xl font-extrabold leading-none text-foreground">
+                          {Number(r.montant_achat).toFixed(2)} €
+                        </div>
+                        <div className="mt-3 rounded-2xl bg-background/80 px-3 py-2 text-sm font-bold text-secondary shadow-card">
+                          +{pointsGagnes} points après validation
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                          Validation
+                        </div>
+                        <div className="mt-2 flex items-end gap-2">
+                          <span className="text-4xl font-extrabold leading-none text-foreground">+1</span>
+                          <span className="pb-1 text-sm font-semibold text-muted-foreground">tampon</span>
+                        </div>
+                        <div className="mt-3 rounded-2xl bg-background/80 px-3 py-2 text-sm font-medium text-muted-foreground shadow-card">
+                          Le client recevra son tampon dès confirmation.
+                        </div>
+                      </>
+                    )}
                   </div>
+                </div>
 
-                  {/* Montant (mode points) */}
-                  {isPoints && r.montant_achat != null && (
-                    <div className="flex-none rounded-2xl border border-border/60 bg-muted/40 px-3 py-2 text-right">
-                      <div className="flex items-center justify-end gap-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        <Receipt className="h-3 w-3" /> Montant
-                      </div>
-                      <div className="mt-0.5 text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
-                        {Number(r.montant_achat).toFixed(2)} €
-                      </div>
-                      <div className="mt-0.5 text-[11px] font-bold text-secondary">
-                        +{Math.floor(Number(r.montant_achat) / Math.max(0.01, montantTranche)) * pointsParTranche} pts
-                      </div>
-                    </div>
-                  )}
+                <div className="border-t border-border/60 p-3 sm:p-4">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                    <Button
+                      variant="refuse"
+                      size="huge"
+                      disabled={busy[r.id]}
+                      onClick={() => decide(r.id, "refuse")}
+                    >
+                      <X className="!size-7" /> Refuser
+                    </Button>
+                    <Button
+                      variant="validate"
+                      size="huge"
+                      disabled={busy[r.id]}
+                      onClick={() => decide(r.id, "valide")}
+                    >
+                      <Check className="!size-7" /> Valider
+                    </Button>
+                  </div>
                 </div>
               </div>
-
-              {/* Séparateur */}
-              <div className="h-px w-full bg-border/60" />
-
-              <div className="grid grid-cols-2 gap-2 p-3 sm:gap-3 sm:p-4">
-                <Button
-                  variant="refuse" size="huge"
-                  disabled={busy[r.id]}
-                  onClick={() => decide(r.id, "refuse")}
-                >
-                  <X className="!size-7" /> Refuser
-                </Button>
-                <Button
-                  variant="validate" size="huge"
-                  disabled={busy[r.id]}
-                  onClick={() => decide(r.id, "valide")}
-                >
-                  <Check className="!size-7" /> Valider
-                </Button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
