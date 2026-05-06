@@ -246,6 +246,9 @@ function HeroVisual() {
         <div className="mt-4 text-center text-sm font-semibold text-muted-foreground">
           {stamps} / 10 — plus que {10 - stamps} pour la récompense&nbsp;!
         </div>
+        <div className="mt-1 text-center text-xs text-muted-foreground/80">
+          Exemple à 10 tampons — vous choisissez le nombre pour votre carte.
+        </div>
       </div>
     </div>
   );
