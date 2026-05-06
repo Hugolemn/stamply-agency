@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useShop } from "@/lib/use-shop";
 import { Button } from "@/components/ui/button";
-import { Check, X, Inbox, Volume2, VolumeX, Sparkles, Bell, BellOff, Clock, User, Receipt, Plus, Minus } from "lucide-react";
+import { Check, X, Inbox, Volume2, VolumeX, Sparkles, Bell, BellOff, Clock, User, Receipt, Plus, Minus, QrCode, Users, Share2, CheckCircle2, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
