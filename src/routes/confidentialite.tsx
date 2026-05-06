@@ -26,95 +26,61 @@ function ConfidentialitePage() {
 
         <Section title="1. Responsable du traitement">
           <p>
-            Le responsable du traitement des données personnelles collectées via Tamply est :
-            <br />
-            <strong>[À COMPLÉTER — raison sociale]</strong>, [À COMPLÉTER — adresse], contact :{" "}
-            <strong>[À COMPLÉTER — email]</strong>.
+            Le <strong>commerçant</strong> utilisant Tamply est responsable des données collectées via son
+            programme de fidélité. <strong>Tamply</strong> (éditeur de la plateforme) agit en tant que{" "}
+            <strong>sous-traitant</strong> au sens du RGPD, et traite les données uniquement pour le compte
+            du commerçant et selon ses instructions.
           </p>
         </Section>
 
         <Section title="2. Données collectées">
-          <p>Nous collectons uniquement les données strictement nécessaires au fonctionnement du service :</p>
-          <ul className="mt-3 list-disc space-y-1 pl-5">
-            <li><strong>Commerçants :</strong> email, nom du commerce, mot de passe (chiffré), informations de facturation.</li>
-            <li><strong>Clients finaux :</strong> identifiant anonyme stocké localement (aucune création de compte requise).</li>
-            <li><strong>Données techniques :</strong> logs de connexion, adresse IP, type de navigateur (à des fins de sécurité).</li>
-          </ul>
+          <p>
+            Nous collectons uniquement le <strong>numéro de téléphone</strong> du client final, saisi
+            volontairement lors du scan du QR code du commerçant. Aucune autre donnée personnelle (nom,
+            email, adresse) n'est demandée au client.
+          </p>
         </Section>
 
         <Section title="3. Finalités du traitement">
-          <p>Les données sont utilisées pour :</p>
+          <p>
+            Le numéro de téléphone est utilisé exclusivement pour le <strong>suivi du programme de
+            fidélité</strong> (enregistrement des tampons et attribution des récompenses) du commerçant.
+          </p>
+        </Section>
+
+        <Section title="4. Durée de conservation">
+          <p>
+            Les données sont conservées <strong>tant que le client participe au programme de fidélité</strong>
+            du commerçant. Elles sont <strong>supprimées sur simple demande</strong> du client.
+          </p>
+        </Section>
+
+        <Section title="5. Vos droits">
+          <p>
+            Tout client peut demander la <strong>consultation</strong>, la <strong>modification</strong> ou
+            la <strong>suppression</strong> de ses données :
+          </p>
           <ul className="mt-3 list-disc space-y-1 pl-5">
-            <li>Fournir et opérer le service de fidélité digitale.</li>
-            <li>Gérer l'authentification et la sécurité des comptes.</li>
-            <li>Gérer la facturation et les abonnements.</li>
-            <li>Répondre aux demandes de support.</li>
-            <li>Respecter les obligations légales et comptables.</li>
+            <li>en contactant directement le commerçant auprès duquel il a scanné le QR code,</li>
+            <li>
+              ou en envoyant un email à{" "}
+              <a href="mailto:contact@tamply.app" className="font-medium text-foreground underline">
+                contact@tamply.app
+              </a>
+              .
+            </li>
           </ul>
         </Section>
 
-        <Section title="4. Base légale">
+        <Section title="6. Sécurité">
           <p>
-            Les traitements reposent sur l'<strong>exécution du contrat</strong> (art. 6.1.b RGPD), le{" "}
-            <strong>consentement</strong> (art. 6.1.a RGPD) lorsque requis, et nos <strong>obligations légales</strong>{" "}
-            (art. 6.1.c RGPD) en matière comptable et fiscale.
+            Les données sont stockées de manière <strong>sécurisée</strong> via notre infrastructure
+            backend (Supabase, hébergement UE). Elles ne sont <strong>jamais revendues</strong> ni
+            partagées avec des tiers.
           </p>
         </Section>
 
-        <Section title="5. Durée de conservation">
-          <ul className="mt-3 list-disc space-y-1 pl-5">
-            <li>Compte commerçant : pendant toute la durée d'utilisation du service, puis 3 ans après inactivité.</li>
-            <li>Données de facturation : 10 ans (obligation légale).</li>
-            <li>Logs techniques : 12 mois maximum.</li>
-            <li>Données clients finaux : tant que le commerçant utilise le service.</li>
-          </ul>
-        </Section>
-
-        <Section title="6. Destinataires et sous-traitants">
-          <p>Vos données ne sont jamais vendues. Elles peuvent être traitées par nos sous-traitants techniques :</p>
-          <ul className="mt-3 list-disc space-y-1 pl-5">
-            <li><strong>Lovable Cloud</strong> (infrastructure backend, hébergement UE)</li>
-            <li><strong>[À COMPLÉTER — Stripe / autre prestataire de paiement]</strong> (paiements)</li>
-            <li><strong>[À COMPLÉTER — service email transactionnel si utilisé]</strong></li>
-          </ul>
-        </Section>
-
-        <Section title="7. Transferts hors UE">
-          <p>
-            Les données sont hébergées au sein de l'Union européenne. En cas de transfert vers un pays tiers, celui-ci
-            sera encadré par les clauses contractuelles types de la Commission européenne.
-          </p>
-        </Section>
-
-        <Section title="8. Vos droits (RGPD)">
-          <p>Conformément au RGPD, vous disposez des droits suivants :</p>
-          <ul className="mt-3 list-disc space-y-1 pl-5">
-            <li>Droit d'accès, de rectification et d'effacement</li>
-            <li>Droit à la limitation et à l'opposition au traitement</li>
-            <li>Droit à la portabilité de vos données</li>
-            <li>Droit de retirer votre consentement à tout moment</li>
-            <li>Droit d'introduire une réclamation auprès de la <strong>CNIL</strong> (France) ou de l'<strong>APD</strong> (Belgique)</li>
-          </ul>
-          <p className="mt-3">
-            Pour exercer ces droits : <strong>[À COMPLÉTER — email contact]</strong>
-          </p>
-        </Section>
-
-        <Section title="9. Sécurité">
-          <p>
-            Nous mettons en œuvre des mesures techniques et organisationnelles adaptées : chiffrement des mots de passe,
-            connexions HTTPS, hébergement sécurisé en UE, accès restreint aux données.
-          </p>
-        </Section>
-
-        <Section title="10. Cookies">
-          <p>
-            Tamply utilise uniquement des cookies techniques nécessaires au fonctionnement du service (session,
-            authentification). Aucun cookie publicitaire ni de mesure d'audience tierce n'est utilisé.
-          </p>
-        </Section>
-
-        <Section title="11. Modifications">
+        <Section title="7. Modifications">
           <p>
             Cette politique peut être mise à jour à tout moment. La date de dernière mise à jour figure en haut du
             document.
