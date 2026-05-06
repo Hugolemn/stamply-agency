@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAuth } from "@/lib/auth-context";
 import { LayoutGrid, CheckCircle2, Users, QrCode, LogOut, UserCircle, BarChart3 } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { usePendingCount } from "@/lib/use-pending-count";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({ meta: [{ title: "Tableau de bord · Tamply" }] }),
@@ -23,6 +24,7 @@ function DashboardLayout() {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const path = useRouterState({ select: (s) => s.location.pathname });
+  const pendingCount = usePendingCount();
 
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/login" });
@@ -62,6 +64,7 @@ function DashboardLayout() {
         <nav className="mx-auto hidden max-w-5xl gap-1 overflow-x-auto px-4 pb-2 md:flex">
           {NAV.map((n) => {
             const active = n.exact ? path === n.to : path.startsWith(n.to);
+            const showBadge = n.to === "/dashboard/validation" && pendingCount > 0;
             return (
               <Link
                 key={n.to}
@@ -72,6 +75,11 @@ function DashboardLayout() {
               >
                 <n.icon className="h-4 w-4" />
                 {n.label}
+                {showBadge && (
+                  <span className="ml-1 inline-flex min-w-[20px] items-center justify-center rounded-full bg-red-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">
+                    {pendingCount > 99 ? "99+" : pendingCount}
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -86,6 +94,7 @@ function DashboardLayout() {
       <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-6 border-t border-border/60 bg-background/95 backdrop-blur md:hidden">
         {NAV.map((n) => {
           const active = n.exact ? path === n.to : path.startsWith(n.to);
+          const showBadge = n.to === "/dashboard/validation" && pendingCount > 0;
           return (
             <Link
               key={n.to}
@@ -94,7 +103,14 @@ function DashboardLayout() {
                 active ? "text-foreground" : "text-muted-foreground"
               }`}
             >
-              <n.icon className={`h-5 w-5 ${active ? "text-secondary" : ""}`} />
+              <span className="relative">
+                <n.icon className={`h-5 w-5 ${active ? "text-secondary" : ""}`} />
+                {showBadge && (
+                  <span className="absolute -right-2 -top-1 inline-flex min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-bold leading-none text-white">
+                    {pendingCount > 9 ? "9+" : pendingCount}
+                  </span>
+                )}
+              </span>
               <span className="line-clamp-1 px-0.5">{n.label.split(" ")[0]}</span>
             </Link>
           );
