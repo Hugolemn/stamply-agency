@@ -282,18 +282,7 @@ function Validation() {
           <Skeleton className="h-32 w-full rounded-2xl" />
         </div>
       ) : requests.length === 0 ? (
-        <div className="rounded-3xl border-2 border-dashed border-border bg-gradient-hero p-10 text-center shadow-card">
-          <div className="relative mx-auto h-16 w-16">
-            <div className="absolute inset-0 animate-ping rounded-2xl bg-primary/25" />
-            <div className="absolute inset-0 grid place-items-center rounded-2xl bg-gradient-cta shadow-soft">
-              <Inbox className="h-8 w-8 text-foreground" />
-            </div>
-          </div>
-          <div className="mt-5 text-lg font-extrabold">En attente de demandes</div>
-          <p className="mx-auto mt-1 max-w-sm text-sm text-muted-foreground">
-            Cette page se met à jour automatiquement dès qu'un client scanne votre QR code.
-          </p>
-        </div>
+        <EmptyValidation shopId={shop.id} shopName={shop.nom} />
       ) : (
         <div className="space-y-3">
           {requests.map((r) => {
