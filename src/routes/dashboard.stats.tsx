@@ -97,14 +97,16 @@ function StatsPage() {
         <Kpi
           icon={Award}
           label="Meilleure journée"
-          value={fetching || !peakDay || peakDay.count === 0 ? "—" : `${peakDay.count}`}
+          value={fetching || !peakDay || peakDay.count === 0 ? "Pas encore de données" : `${peakDay.count}`}
           sub={fetching || !peakDay || peakDay.count === 0 ? undefined : peakDay.date.toLocaleDateString("fr-FR", { day: "2-digit", month: "short" })}
+          empty={!fetching && (!peakDay || peakDay.count === 0)}
         />
         <Kpi
           icon={Calendar}
           label="Pic d'affluence"
-          value={fetching || peakDow < 0 ? "—" : `${peakHour}h`}
+          value={fetching || peakDow < 0 ? "Pas encore de données" : `${peakHour}h`}
           sub={fetching || peakDow < 0 ? undefined : DOW_LABELS[peakDow]}
+          empty={!fetching && peakDow < 0}
         />
       </div>
 
@@ -131,13 +133,13 @@ function dayKey(d: Date) {
   return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
 }
 
-function Kpi({ icon: Icon, label, value, sub }: { icon: any; label: string; value: string; sub?: string }) {
+function Kpi({ icon: Icon, label, value, sub, empty }: { icon: any; label: string; value: string; sub?: string; empty?: boolean }) {
   return (
     <div className="rounded-2xl border border-border/60 bg-card p-4 shadow-card">
       <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary/20">
         <Icon className="h-4 w-4 text-foreground" />
       </div>
-      <div className="mt-3 text-2xl font-extrabold">{value}</div>
+      <div className={`mt-3 font-extrabold ${empty ? "text-sm text-muted-foreground/70 font-medium" : "text-2xl"}`}>{value}</div>
       <div className="text-xs text-muted-foreground">{label}</div>
       {sub && <div className="mt-0.5 text-[11px] font-semibold text-secondary">{sub}</div>}
     </div>
@@ -158,7 +160,9 @@ function Card({ title, subtitle, children }: { title: string; subtitle?: string;
 
 function LineChart({ days }: { days: { date: Date; count: number }[] }) {
   const W = 600, H = 200, P = 28;
-  const max = Math.max(1, ...days.map((d) => d.count));
+  const dataMax = Math.max(0, ...days.map((d) => d.count));
+  const isEmpty = dataMax === 0;
+  const max = isEmpty ? 5 : dataMax;
   const stepX = (W - P * 2) / Math.max(1, days.length - 1);
   const points = days.map((d, i) => {
     const x = P + i * stepX;
@@ -167,7 +171,7 @@ function LineChart({ days }: { days: { date: Date; count: number }[] }) {
   });
   const path = points.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
   const area = `${path} L${points[points.length - 1].x.toFixed(1)} ${H - P} L${points[0].x.toFixed(1)} ${H - P} Z`;
-  const ticks = 4;
+  const ticks = 5;
   const xLabels = days.length <= 8
     ? days.map((_, i) => i)
     : Array.from({ length: 5 }, (_, i) => Math.round((i * (days.length - 1)) / 4));
@@ -185,9 +189,11 @@ function LineChart({ days }: { days: { date: Date; count: number }[] }) {
             </g>
           );
         })}
-        <path d={area} className="fill-primary/15" />
-        <path d={path} fill="none" className="stroke-primary" strokeWidth={2.5} strokeLinejoin="round" strokeLinecap="round" />
-        {points.map((p, i) => (
+        {!isEmpty && <path d={area} className="fill-primary/15" />}
+        {!isEmpty && (
+          <path d={path} fill="none" className="stroke-primary" strokeWidth={2.5} strokeLinejoin="round" strokeLinecap="round" />
+        )}
+        {!isEmpty && points.map((p, i) => (
           <circle key={i} cx={p.x} cy={p.y} r={p.d.count > 0 ? 3 : 1.5} className="fill-primary" />
         ))}
         {xLabels.map((i) => {
@@ -199,6 +205,11 @@ function LineChart({ days }: { days: { date: Date; count: number }[] }) {
             </text>
           );
         })}
+        {isEmpty && (
+          <text x={W / 2} y={H / 2} textAnchor="middle" className="fill-muted-foreground text-[12px]">
+            Pas encore de données — vos tampons apparaîtront ici
+          </text>
+        )}
       </svg>
     </div>
   );
