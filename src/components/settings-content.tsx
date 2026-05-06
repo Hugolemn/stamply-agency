@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Download, Volume2, Bell, Vibrate, Upload, ImageIcon, Trash2, Loader2 } from "lucide-react";
+import { Download, Volume2, Bell, Vibrate, Upload, ImageIcon, Trash2, Loader2, Sun, Moon } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTheme } from "@/hooks/use-theme";
 
 const EMOJI_CATEGORIES: { id: string; label: string; emojis: string[] }[] = [
   {
@@ -55,6 +56,7 @@ const PRESET_COLORS = [
 
 export function SettingsContent() {
   const { shop, refresh } = useShop();
+  const { theme, setTheme } = useTheme();
   const [form, setForm] = useState({
     nom: "",
     description_recompense: "",
@@ -517,6 +519,53 @@ export function SettingsContent() {
       <Button variant="cta" size="xl" disabled={saving} onClick={save} className="w-full sm:w-auto">
         {saving ? "Enregistrement…" : "Enregistrer"}
       </Button>
+
+      <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
+        <div>
+          <h2 className="font-bold">Apparence</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Choisissez le thème de l'interface. Votre choix est mémorisé sur cet appareil.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            onClick={() => setTheme("light")}
+            aria-pressed={theme === "light"}
+            className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${
+              theme === "light"
+                ? "border-primary bg-primary/10 shadow-soft"
+                : "border-border/60 bg-muted/30 hover:bg-muted/50"
+            }`}
+          >
+            <div className="grid h-10 w-10 place-items-center rounded-lg bg-background shadow-card">
+              <Sun className="h-5 w-5 text-foreground" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold">Clair</p>
+              <p className="text-xs text-muted-foreground">Thème lumineux</p>
+            </div>
+          </button>
+          <button
+            type="button"
+            onClick={() => setTheme("dark")}
+            aria-pressed={theme === "dark"}
+            className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${
+              theme === "dark"
+                ? "border-primary bg-primary/10 shadow-soft"
+                : "border-border/60 bg-muted/30 hover:bg-muted/50"
+            }`}
+          >
+            <div className="grid h-10 w-10 place-items-center rounded-lg bg-foreground shadow-card">
+              <Moon className="h-5 w-5 text-background" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold">Sombre</p>
+              <p className="text-xs text-muted-foreground">Repose les yeux</p>
+            </div>
+          </button>
+        </div>
+      </div>
 
       <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
         <div>
