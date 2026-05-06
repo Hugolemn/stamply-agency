@@ -4,6 +4,7 @@ import { useAuth } from "@/lib/auth-context";
 import { LayoutGrid, CheckCircle2, Users, QrCode, LogOut, UserCircle, BarChart3 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { usePendingCount } from "@/lib/use-pending-count";
+import { applyTheme, getInitialTheme } from "@/hooks/use-theme";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({ meta: [{ title: "Tableau de bord · Tamply" }] }),
@@ -29,6 +30,12 @@ function DashboardLayout() {
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/login" });
   }, [loading, user, navigate]);
+
+  // Le mode sombre s'applique uniquement dans le dashboard
+  useEffect(() => {
+    applyTheme(getInitialTheme());
+    return () => applyTheme("light");
+  }, []);
 
   if (loading || !user) {
     return (
