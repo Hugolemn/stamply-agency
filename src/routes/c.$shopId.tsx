@@ -222,7 +222,8 @@ function Header({ shop }: { shop: Shop }) {
           </div>
         )}
       </div>
-      <h1 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900">{shop.nom}</h1>
+      <p className="mt-4 text-sm text-neutral-500">Bienvenue chez</p>
+      <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">{shop.nom}</h1>
       <p className="mt-1 text-sm text-neutral-500">Fidélité récompensée</p>
     </div>
   );
