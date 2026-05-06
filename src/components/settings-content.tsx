@@ -522,6 +522,53 @@ export function SettingsContent() {
 
       <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
         <div>
+          <h2 className="font-bold">Apparence</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Choisissez le thème de l'interface. Votre choix est mémorisé sur cet appareil.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            onClick={() => setTheme("light")}
+            aria-pressed={theme === "light"}
+            className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${
+              theme === "light"
+                ? "border-primary bg-primary/10 shadow-soft"
+                : "border-border/60 bg-muted/30 hover:bg-muted/50"
+            }`}
+          >
+            <div className="grid h-10 w-10 place-items-center rounded-lg bg-background shadow-card">
+              <Sun className="h-5 w-5 text-foreground" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold">Clair</p>
+              <p className="text-xs text-muted-foreground">Thème lumineux</p>
+            </div>
+          </button>
+          <button
+            type="button"
+            onClick={() => setTheme("dark")}
+            aria-pressed={theme === "dark"}
+            className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${
+              theme === "dark"
+                ? "border-primary bg-primary/10 shadow-soft"
+                : "border-border/60 bg-muted/30 hover:bg-muted/50"
+            }`}
+          >
+            <div className="grid h-10 w-10 place-items-center rounded-lg bg-foreground shadow-card">
+              <Moon className="h-5 w-5 text-background" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold">Sombre</p>
+              <p className="text-xs text-muted-foreground">Repose les yeux</p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
+        <div>
           <h2 className="font-bold">Alertes de validation</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Soyez prévenu dès qu'un client scanne votre QR code, même si vous n'êtes pas sur la page de validation.
