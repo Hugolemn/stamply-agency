@@ -11,6 +11,14 @@ export const Route = createFileRoute("/dashboard/validation")({
   component: Validation,
 });
 
+function maskPhone(phone: string): string {
+  const digits = (phone ?? "").replace(/\D/g, "");
+  if (digits.length <= 6) return phone;
+  const start = digits.slice(0, 3);
+  const end = digits.slice(-3);
+  return `${start} ••• ${end}`;
+}
+
 interface PendingReq {
   id: string;
   numero_telephone: string;
@@ -333,7 +341,7 @@ function Validation() {
                         Client
                       </div>
                       <div className="mt-1 truncate text-xl font-extrabold sm:text-[1.7rem]">
-                        {r.numero_telephone}
+                        {maskPhone(r.numero_telephone)}
                       </div>
                       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-medium text-muted-foreground">
                         <div className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-1">
