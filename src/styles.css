@@ -46,7 +46,7 @@
 
 :root {
   --radius: 1rem;
-  /* Tamply palette - moderne & friendly */
+  /* Stamply Agency palette - moderne & friendly */
   --background: oklch(0.99 0.005 95);
   --foreground: oklch(0.18 0.02 50);
   --card: oklch(1 0 0);

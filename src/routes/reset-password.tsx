@@ -9,8 +9,8 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Nouveau mot de passe · Tamply" },
-      { name: "description", content: "Définissez un nouveau mot de passe pour votre compte Tamply." },
+      { title: "Nouveau mot de passe · Stamply Agency" },
+      { name: "description", content: "Définissez un nouveau mot de passe pour votre compte Stamply Agency." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

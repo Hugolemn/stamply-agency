@@ -7,22 +7,22 @@ import logo from "@/assets/logo.png";
 export const Route = createFileRoute("/demo")({
   head: () => ({
     meta: [
-      { title: "Démo Tamply — Voyez comment ça marche en 30 secondes" },
+      { title: "Démo Stamply Agency — Voyez comment ça marche en 30 secondes" },
       {
         name: "description",
         content:
-          "Découvrez en animation comment Tamply transforme la fidélisation de votre établissement : QR code, validation en un clic, récompense automatique.",
+          "Découvrez en animation comment Stamply Agency transforme la fidélisation de votre établissement : QR code, validation en un clic, récompense automatique.",
       },
-      { property: "og:title", content: "Démo Tamply — Voyez comment ça marche" },
+      { property: "og:title", content: "Démo Stamply Agency — Voyez comment ça marche" },
       {
         property: "og:description",
         content:
-          "Une démo animée pour comprendre Tamply en 30 secondes : du scan client à la récompense.",
+          "Une démo animée pour comprendre Stamply Agency en 30 secondes : du scan client à la récompense.",
       },
       { property: "og:image", content: "/og-image.jpg" },
       { property: "og:url", content: "https://tamply.app/demo" },
-      { name: "twitter:title", content: "Démo Tamply — Voyez comment ça marche" },
-      { name: "twitter:description", content: "Une démo animée pour comprendre Tamply en 30 secondes." },
+      { name: "twitter:title", content: "Démo Stamply Agency — Voyez comment ça marche" },
+      { name: "twitter:description", content: "Une démo animée pour comprendre Stamply Agency en 30 secondes." },
     ],
   }),
   component: DemoPage,
@@ -57,8 +57,8 @@ function DemoPage() {
       <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" width="36" height="36" decoding="async" />
-            <span className="text-xl font-extrabold tracking-tight">Tamply</span>
+            <img src={logo} alt="Logo Stamply Agency" className="h-9 w-9 object-contain" width="36" height="36" decoding="async" />
+            <span className="text-xl font-extrabold tracking-tight">Stamply Agency</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <Link to="/" className="text-muted-foreground hover:text-foreground">Accueil</Link>
@@ -76,7 +76,7 @@ function DemoPage() {
             ▶ Démo interactive · 30 secondes
           </div>
           <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            Tamply, expliqué en <span className="bg-gradient-to-r from-[#E63946] to-[#FFB800] bg-clip-text text-transparent">5 étapes</span>
+            Stamply Agency, expliqué en <span className="bg-gradient-to-r from-[#E63946] to-[#FFB800] bg-clip-text text-transparent">5 étapes</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Regardez comment vos clients scannent, et comment vous validez en un clic depuis votre comptoir.

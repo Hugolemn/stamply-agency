@@ -7,7 +7,7 @@ import { usePendingCount } from "@/lib/use-pending-count";
 import { applyTheme, getInitialTheme } from "@/hooks/use-theme";
 
 export const Route = createFileRoute("/dashboard")({
-  head: () => ({ meta: [{ title: "Tableau de bord · Tamply" }] }),
+  head: () => ({ meta: [{ title: "Tableau de bord · Stamply Agency" }] }),
   component: DashboardLayout,
 });
 
@@ -43,7 +43,7 @@ function DashboardLayout() {
         <div className="flex flex-col items-center gap-3">
           <div className="relative h-12 w-12">
             <div className="absolute inset-0 animate-ping rounded-full bg-primary/30" />
-            <img src={logo} alt="Tamply" className="absolute inset-0 m-auto h-10 w-10 object-contain" />
+            <img src={logo} alt="Stamply Agency" className="absolute inset-0 m-auto h-10 w-10 object-contain" />
           </div>
           <div className="text-sm font-semibold text-muted-foreground">Chargement…</div>
         </div>
@@ -57,8 +57,8 @@ function DashboardLayout() {
       <header className="sticky top-0 z-30 border-b border-border/60 bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <Link to="/dashboard" className="flex items-center gap-2">
-            <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" />
-            <span className="text-lg font-extrabold">Tamply</span>
+            <img src={logo} alt="Logo Stamply Agency" className="h-9 w-9 object-contain" />
+            <span className="text-lg font-extrabold">Stamply Agency</span>
           </Link>
           <button
             onClick={async () => { await signOut(); navigate({ to: "/" }); }}

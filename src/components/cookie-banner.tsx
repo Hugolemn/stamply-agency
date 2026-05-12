@@ -41,7 +41,7 @@ export function CookieBanner() {
         <div className="flex-1 text-sm text-foreground">
           <p className="font-semibold">Cookies & confidentialité</p>
           <p className="mt-1 text-muted-foreground">
-            Tamply utilise uniquement des cookies strictement nécessaires au fonctionnement du service
+            Stamply Agency utilise uniquement des cookies strictement nécessaires au fonctionnement du service
             (session, authentification). Aucun cookie publicitaire, aucun traceur tiers.{" "}
             <Link to="/confidentialite" className="font-medium text-primary underline">
               En savoir plus
