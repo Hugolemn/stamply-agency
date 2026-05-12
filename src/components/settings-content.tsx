@@ -75,6 +75,7 @@ export function SettingsContent() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [soundOn, setSoundOn] = useState(true);
+  const audioCtxRef = useRef<AudioContext | null>(null);
   const [vibrationOn, setVibrationOn] = useState(true);
   const [notifOn, setNotifOn] = useState(false);
   const [notifSupported, setNotifSupported] = useState(true);
@@ -97,6 +98,49 @@ export function SettingsContent() {
   const toggleSound = (v: boolean) => {
     setSoundOn(v);
     try { localStorage.setItem("tamply-sound", v ? "on" : "off"); } catch {}
+    if (v) playTestBeep();
+  };
+
+  const playTestBeep = () => {
+    try {
+      if (typeof window === "undefined") return;
+      audioCtxRef.current ||= new (window.AudioContext || (window as any).webkitAudioContext)();
+      const ctx = audioCtxRef.current!;
+      if (ctx.state === "suspended") ctx.resume().catch(() => {});
+      const playTone = (freq: number, startOffset: number, duration: number) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = "sine";
+        o.frequency.value = freq;
+        const start = ctx.currentTime + startOffset;
+        g.gain.setValueAtTime(0.0001, start);
+        g.gain.exponentialRampToValueAtTime(0.3, start + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+        o.connect(g).connect(ctx.destination);
+        o.start(start);
+        o.stop(start + duration + 0.05);
+      };
+      playTone(880, 0, 0.18);
+      playTone(1175, 0.18, 0.28);
+    } catch {}
+  };
+
+  const testNotif = () => {
+    if (typeof Notification === "undefined" || Notification.permission !== "granted") {
+      toast.error("Activez d'abord les notifications.");
+      return;
+    }
+    try {
+      const n = new Notification("🔔 Test Tamply", {
+        body: "Vous êtes prêt à recevoir les alertes !",
+        tag: "tamply-test",
+        icon: "/favicon.png",
+        badge: "/favicon.png",
+      });
+      setTimeout(() => n.close(), 5000);
+    } catch {
+      toast.error("Impossible d'afficher la notification.");
+    }
   };
 
   const toggleVibration = (v: boolean) => {
