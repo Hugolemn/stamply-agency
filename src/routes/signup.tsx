@@ -13,11 +13,11 @@ import logo from "@/assets/logo.png";
 export const Route = createFileRoute("/signup")({
   head: () => ({
     meta: [
-      { title: "Inscription · Tamply — 30 jours gratuits" },
+      { title: "Inscription · Stamply Agency — 30 jours gratuits" },
       {
         name: "description",
         content:
-          "Créez votre compte Tamply en 1 minute et lancez votre programme de fidélité digital. 30 jours d'essai gratuit, sans carte bancaire.",
+          "Créez votre compte Stamply Agency en 1 minute et lancez votre programme de fidélité digital. 30 jours d'essai gratuit, sans carte bancaire.",
       },
       { name: "robots", content: "noindex, nofollow" },
     ],
@@ -105,7 +105,7 @@ function Signup() {
         navigate({ to: "/dashboard" });
         return;
       } else {
-        toast.success("Bienvenue sur Tamply ! 🎉");
+        toast.success("Bienvenue sur Stamply Agency ! 🎉");
       }
     }
     setLoading(false);
@@ -117,8 +117,8 @@ function Signup() {
       <div className="min-h-screen bg-gradient-hero px-4 py-10">
         <div className="mx-auto max-w-md">
           <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-            <img src={logo} alt="Logo Tamply" className="h-10 w-10 object-contain" />
-            <span className="text-2xl font-extrabold">Tamply</span>
+            <img src={logo} alt="Logo Stamply Agency" className="h-10 w-10 object-contain" />
+            <span className="text-2xl font-extrabold">Stamply Agency</span>
           </Link>
           <div className="rounded-3xl border border-border/60 bg-card p-7 text-center shadow-soft">
             <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gradient-cta text-2xl">
@@ -145,8 +145,8 @@ function Signup() {
     <div className="min-h-screen bg-gradient-hero px-4 py-10">
       <div className="mx-auto max-w-md">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-          <img src={logo} alt="Logo Tamply" className="h-10 w-10 object-contain" />
-          <span className="text-2xl font-extrabold">Tamply</span>
+          <img src={logo} alt="Logo Stamply Agency" className="h-10 w-10 object-contain" />
+          <span className="text-2xl font-extrabold">Stamply Agency</span>
         </Link>
         <div className="rounded-3xl border border-border/60 bg-card p-7 shadow-soft">
           <h1 className="text-2xl font-extrabold">Créez votre compte</h1>

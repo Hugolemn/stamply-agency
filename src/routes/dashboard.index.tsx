@@ -204,7 +204,7 @@ function OnboardingChecklist({
             <Rocket className="h-5 w-5 text-foreground" />
           </div>
           <div>
-            <div className="text-sm font-extrabold">Bien démarrer avec Tamply</div>
+            <div className="text-sm font-extrabold">Bien démarrer avec Stamply Agency</div>
             <div className="text-xs text-muted-foreground">{completed}/{total} étapes complétées</div>
           </div>
         </div>

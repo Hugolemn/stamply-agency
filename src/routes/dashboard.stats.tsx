@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { TrendingUp, Calendar, Activity, Award } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard/stats")({
-  head: () => ({ meta: [{ title: "Statistiques · Tamply" }] }),
+  head: () => ({ meta: [{ title: "Statistiques · Stamply Agency" }] }),
   component: StatsPage,
 });
 

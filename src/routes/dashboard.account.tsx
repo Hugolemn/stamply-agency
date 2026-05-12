@@ -24,7 +24,7 @@ import { Mail, KeyRound, FileText, Trash2, AlertTriangle, Receipt, CreditCard } 
 import { SettingsContent } from "@/components/settings-content";
 
 export const Route = createFileRoute("/dashboard/account")({
-  head: () => ({ meta: [{ title: "Mon compte · Tamply" }] }),
+  head: () => ({ meta: [{ title: "Mon compte · Stamply Agency" }] }),
   validateSearch: (search: Record<string, unknown>) => ({
     tab: (search.tab as string) || "profil",
   }),
@@ -225,7 +225,7 @@ function AccountPage() {
             <div className="flex items-start gap-3">
               <CreditCard className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div>
-                <h2 className="font-bold">Tamply Pro</h2>
+                <h2 className="font-bold">Stamply Agency Pro</h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">
                   24,99€/mois par établissement. Sans engagement, résiliable à tout moment.
                 </p>
@@ -248,13 +248,13 @@ function AccountPage() {
                 <p className="mt-3 text-sm text-muted-foreground">
                   {isTrial
                     ? `Votre essai gratuit se termine le ${new Date(shop.trial_end).toLocaleDateString("fr-FR")}. Activez votre abonnement avant cette date pour continuer sans interruption.`
-                    : "Merci de soutenir Tamply 💛"}
+                    : "Merci de soutenir Stamply Agency 💛"}
                 </p>
               </div>
             )}
 
             <Button variant="cta" size="xl" disabled className="w-full sm:w-auto">
-              Activer Tamply Pro · 24,99€/mois (bientôt)
+              Activer Stamply Agency Pro · 24,99€/mois (bientôt)
             </Button>
             <p className="text-xs text-muted-foreground">
               Le paiement sécurisé Stripe sera disponible dans la prochaine mise à jour.
@@ -268,9 +268,9 @@ function AccountPage() {
             <div className="flex items-start gap-3">
               <Receipt className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div>
-                <h2 className="font-bold">Mes factures Tamply</h2>
+                <h2 className="font-bold">Mes factures Stamply Agency</h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">
-                  Retrouvez ici l'ensemble de vos factures d'abonnement Tamply Pro, téléchargeables en PDF.
+                  Retrouvez ici l'ensemble de vos factures d'abonnement Stamply Agency Pro, téléchargeables en PDF.
                 </p>
               </div>
             </div>
@@ -280,7 +280,7 @@ function AccountPage() {
               <p className="font-semibold">Aucune facture pour le moment</p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {shop?.statut_abonnement === "essai"
-                  ? "Vous êtes actuellement en période d'essai gratuit. Vos factures apparaîtront ici dès l'activation de votre abonnement Tamply Pro."
+                  ? "Vous êtes actuellement en période d'essai gratuit. Vos factures apparaîtront ici dès l'activation de votre abonnement Stamply Agency Pro."
                   : "Vos factures apparaîtront ici dès votre premier paiement."}
               </p>
             </div>

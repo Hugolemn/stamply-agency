@@ -13,8 +13,8 @@ function NotFoundComponent() {
       <div className="absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-secondary/20 blur-3xl" />
       <div className="relative w-full max-w-lg text-center">
         <Link to="/" className="inline-flex items-center gap-2">
-          <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" />
-          <span className="text-xl font-extrabold tracking-tight">Tamply</span>
+          <img src={logo} alt="Logo Stamply Agency" className="h-9 w-9 object-contain" />
+          <span className="text-xl font-extrabold tracking-tight">Stamply Agency</span>
         </Link>
 
         {/* Carte de fidélité illustrative avec une case manquante */}
@@ -72,28 +72,28 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1" },
-      { title: "Tamply — La carte de fidélité digitale" },
+      { title: "Stamply Agency — La carte de fidélité digitale" },
       {
         name: "description",
         content:
-          "Tamply : la carte de fidélité digitale pour restaurants, sandwicheries, brasseries, cafés et friteries. Aucune app à télécharger pour vos clients. Validez chaque tampon en un clic.",
+          "Stamply Agency : la carte de fidélité digitale pour restaurants, sandwicheries, brasseries, cafés et friteries. Aucune app à télécharger pour vos clients. Validez chaque tampon en un clic.",
       },
-      { name: "author", content: "Tamply" },
+      { name: "author", content: "Stamply Agency" },
       { name: "theme-color", content: "#FFFBEB" },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Tamply — La carte de fidélité digitale" },
-      { property: "og:description", content: "Tamply — Carte de fidélité digitale à tampons pour votre établissement. Simple, rapide, sans application." },
+      { property: "og:title", content: "Stamply Agency — La carte de fidélité digitale" },
+      { property: "og:description", content: "Stamply Agency — Carte de fidélité digitale à tampons pour votre établissement. Simple, rapide, sans application." },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "fr_FR" },
-      { property: "og:site_name", content: "Tamply" },
+      { property: "og:site_name", content: "Stamply Agency" },
       { property: "og:image", content: "/og-image.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "640" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Tamply — La carte de fidélité digitale" },
-      { name: "twitter:description", content: "Tamply — Carte de fidélité digitale à tampons pour votre établissement. Simple, rapide, sans application." },
+      { name: "twitter:title", content: "Stamply Agency — La carte de fidélité digitale" },
+      { name: "twitter:description", content: "Stamply Agency — Carte de fidélité digitale à tampons pour votre établissement. Simple, rapide, sans application." },
       { name: "twitter:image", content: "/og-image.jpg" },
-      { name: "description", content: "Tamply — Carte de fidélité digitale à tampons pour votre établissement. Simple, rapide, sans application." },
+      { name: "description", content: "Stamply Agency — Carte de fidélité digitale à tampons pour votre établissement. Simple, rapide, sans application." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
