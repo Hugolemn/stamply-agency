@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { useServerFn } from "@tanstack/react-start";
-import { deleteMyAccount } from "@/server/account.functions";
+import { deleteMyAccount } from "@/lib/account.functions";
 import {
   AlertDialog,
   AlertDialogAction,
