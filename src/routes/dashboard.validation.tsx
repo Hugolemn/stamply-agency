@@ -68,6 +68,11 @@ function Validation() {
       if (typeof window === "undefined") return;
       audioCtxRef.current ||= new (window.AudioContext || (window as any).webkitAudioContext)();
       const ctx = audioCtxRef.current!;
+      // Certains navigateurs (Chrome, Safari iOS) suspendent l'AudioContext tant
+      // qu'aucun geste utilisateur n'a eu lieu. On tente de le réveiller.
+      if (ctx.state === "suspended") {
+        ctx.resume().catch(() => {});
+      }
       const playTone = (freq: number, startOffset: number, duration: number) => {
         const o = ctx.createOscillator();
         const g = ctx.createGain();
@@ -92,6 +97,30 @@ function Validation() {
       }
     } catch {}
   };
+
+  // Pré-réveille l'AudioContext au premier geste utilisateur sur la page,
+  // afin que le tout premier bip soit audible même si la demande arrive
+  // avant toute interaction explicite.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prime = () => {
+      try {
+        audioCtxRef.current ||= new (window.AudioContext || (window as any).webkitAudioContext)();
+        audioCtxRef.current?.resume().catch(() => {});
+      } catch {}
+      window.removeEventListener("pointerdown", prime);
+      window.removeEventListener("keydown", prime);
+      window.removeEventListener("touchstart", prime);
+    };
+    window.addEventListener("pointerdown", prime, { once: true });
+    window.addEventListener("keydown", prime, { once: true });
+    window.addEventListener("touchstart", prime, { once: true });
+    return () => {
+      window.removeEventListener("pointerdown", prime);
+      window.removeEventListener("keydown", prime);
+      window.removeEventListener("touchstart", prime);
+    };
+  }, []);
 
   // Notification système (fonctionne même si l'onglet est en arrière-plan)
   const showSystemNotif = (phone: string) => {
