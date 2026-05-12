@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { useServerFn } from "@tanstack/react-start";
-import { deleteMyAccount } from "@/lib/account.functions";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -100,7 +99,7 @@ function AccountPage() {
   const deleteAccount = async () => {
     setDeleting(true);
     try {
-      await deleteAccountFn({});
+     await supabase.rpc('delete_user');
       await supabase.auth.signOut();
       toast.success("Compte supprimé. À bientôt.");
       navigate({ to: "/" });
