@@ -27,15 +27,15 @@ function MentionsLegalesPage() {
         <Section title="1. Éditeur du site">
           <p>Le site <strong>Tamply</strong> est édité par :</p>
           <ul className="mt-3 space-y-1">
-            <li><strong>Raison sociale :</strong> [À COMPLÉTER — nom de l'entreprise / nom et prénom si auto-entrepreneur]</li>
-            <li><strong>Forme juridique :</strong> [À COMPLÉTER — SAS, SARL, SASU, EI, auto-entrepreneur, SRL...]</li>
-            <li><strong>Capital social :</strong> [À COMPLÉTER — si société, ex : 1 000 €]</li>
-            <li><strong>Siège social :</strong> [À COMPLÉTER — adresse complète]</li>
-            <li><strong>Numéro d'immatriculation :</strong> [À COMPLÉTER — RCS / SIRET (FR) ou BCE (BE)]</li>
-            <li><strong>Numéro de TVA intracommunautaire :</strong> [À COMPLÉTER — si applicable]</li>
-            <li><strong>Directeur de la publication :</strong> [À COMPLÉTER — nom et prénom]</li>
-            <li><strong>Email de contact :</strong> [À COMPLÉTER — contact@tamply.app]</li>
-            <li><strong>Téléphone :</strong> [À COMPLÉTER — facultatif]</li>
+            <li><strong>Raison sociale :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Forme juridique :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Capital social :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Siège social :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Numéro d'immatriculation :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Numéro de TVA intracommunautaire :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Directeur de la publication :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Email de contact :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Téléphone :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
           </ul>
         </Section>
 
@@ -54,7 +54,7 @@ function MentionsLegalesPage() {
         <Section title="3. Propriété intellectuelle">
           <p>
             L'ensemble du contenu présent sur le site Tamply (textes, graphismes, logo, icônes, images, code source) est
-            la propriété exclusive de [À COMPLÉTER — éditeur] ou de ses partenaires, et est protégé par les lois
+            la propriété exclusive de Tamply est en phase bêta — mentions légales/CGV en cours de finalisation ou de ses partenaires, et est protégé par les lois
             françaises et internationales relatives à la propriété intellectuelle.
           </p>
           <p className="mt-3">
@@ -87,14 +87,14 @@ function MentionsLegalesPage() {
 
         <Section title="7. Droit applicable">
           <p>
-            Les présentes mentions légales sont régies par le droit [À COMPLÉTER — français / belge]. Tout litige relatif
-            au site sera de la compétence exclusive des tribunaux de [À COMPLÉTER — ville].
+            Les présentes mentions légales sont régies par le droit Tamply est en phase bêta — mentions légales/CGV en cours de finalisation. Tout litige relatif
+            au site sera de la compétence exclusive des tribunaux de Tamply est en phase bêta — mentions légales/CGV en cours de finalisation.
           </p>
         </Section>
 
         <Section title="8. Contact">
           <p>
-            Pour toute question : <strong>[À COMPLÉTER — contact@tamply.app]</strong>
+            Pour toute question : <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>
           </p>
         </Section>
       </main>
