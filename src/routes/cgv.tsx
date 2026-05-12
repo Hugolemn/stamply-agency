@@ -34,7 +34,7 @@ function CgvPage() {
 
         <Section title="2. Éditeur du service">
           <p>
-            Le service est édité par <strong>[À COMPLÉTER — raison sociale]</strong>, dont les coordonnées complètes
+            Le service est édité par <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>, dont les coordonnées complètes
             figurent dans les <Link to="/mentions-legales" className="text-primary underline">mentions légales</Link>.
           </p>
         </Section>
@@ -183,18 +183,18 @@ function CgvPage() {
 
         <Section title="14. Droit applicable et litiges">
           <p>
-            Les présentes CGV sont soumises au droit [À COMPLÉTER — français / belge]. En cas de litige, et après
-            tentative de résolution amiable, les tribunaux de [À COMPLÉTER — ville] seront seuls compétents.
+            Les présentes CGV sont soumises au droit Tamply est en phase bêta — mentions légales/CGV en cours de finalisation. En cas de litige, et après
+            tentative de résolution amiable, les tribunaux de Tamply est en phase bêta — mentions légales/CGV en cours de finalisation seront seuls compétents.
           </p>
           <p className="mt-3">
             Conformément à l'article L612-1 du Code de la consommation, le consommateur peut recourir gratuitement à un
-            médiateur de la consommation : <strong>[À COMPLÉTER — nom et coordonnées du médiateur]</strong>.
+            médiateur de la consommation : <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>.
           </p>
         </Section>
 
         <Section title="15. Contact">
           <p>
-            Pour toute question relative aux présentes CGV : <strong>[À COMPLÉTER — contact@tamply.app]</strong>
+            Pour toute question relative aux présentes CGV : <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>
           </p>
         </Section>
       </main>
