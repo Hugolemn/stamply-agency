@@ -153,10 +153,7 @@ export function SettingsContent() {
       couleur: form.couleur,
       logo_url: form.logo_url.trim() || null,
       stamp_emoji: form.stamp_emoji || "🍟",
-      loyalty_mode: form.loyalty_mode,
-      montant_tranche: Math.max(0.5, Math.min(1000, Number(form.montant_tranche) || 5)),
-      points_par_tranche: Math.max(1, Math.min(1000, Number(form.points_par_tranche) || 1)),
-      points_requis: Math.max(1, Math.min(100000, Number(form.points_requis) || 100)),
+      loyalty_mode: "tampons",
     }).eq("id", shop.id);
     setSaving(false);
     if (error) { toast.error(error.message); return; }
