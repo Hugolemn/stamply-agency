@@ -131,7 +131,7 @@ export function SettingsContent() {
       return;
     }
     try {
-      const n = new Notification("🔔 Test Stamply Agency", {
+      const n = new Notification("🔔 Test Tamply", {
         body: "Vous êtes prêt à recevoir les alertes !",
         tag: "tamply-test",
         icon: "/favicon.png",

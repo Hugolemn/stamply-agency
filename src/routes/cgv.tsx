@@ -4,11 +4,11 @@ import logo from "@/assets/logo.png";
 export const Route = createFileRoute("/cgv")({
   head: () => ({
     meta: [
-      { title: "Conditions Générales de Vente — Stamply Agency" },
-      { name: "description", content: "Conditions générales de vente et d'utilisation du service Stamply Agency." },
+      { title: "Conditions Générales de Vente — Tamply" },
+      { name: "description", content: "Conditions générales de vente et d'utilisation du service Tamply." },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "CGV — Stamply Agency" },
-      { property: "og:description", content: "Les conditions encadrant l'usage du service Stamply Agency." },
+      { property: "og:title", content: "CGV — Tamply" },
+      { property: "og:description", content: "Les conditions encadrant l'usage du service Tamply." },
     ],
   }),
   component: CgvPage,
@@ -27,21 +27,21 @@ function CgvPage() {
         <Section title="1. Objet">
           <p>
             Les présentes Conditions Générales de Vente et d'Utilisation (ci-après « CGV ») régissent l'accès et
-            l'utilisation du service <strong>Stamply Agency</strong>, plateforme de fidélité digitale destinée aux
+            l'utilisation du service <strong>Tamply</strong>, plateforme de fidélité digitale destinée aux
             professionnels de l'Horeca.
           </p>
         </Section>
 
         <Section title="2. Éditeur du service">
           <p>
-            Le service est édité par <strong>Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</strong>, dont les coordonnées complètes
+            Le service est édité par <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>, dont les coordonnées complètes
             figurent dans les <Link to="/mentions-legales" className="text-primary underline">mentions légales</Link>.
           </p>
         </Section>
 
         <Section title="3. Description du service">
           <p>
-            Stamply Agency permet aux commerçants de remplacer leurs cartes de fidélité papier par une solution digitale
+            Tamply permet aux commerçants de remplacer leurs cartes de fidélité papier par une solution digitale
             accessible via un lien unique, sans installation d'application par le client final. Le service inclut :
           </p>
           <ul className="mt-3 list-disc space-y-1 pl-5">
@@ -61,7 +61,7 @@ function CgvPage() {
 
         <Section title="5. Tarifs et abonnement">
           <p>
-            Stamply Agency est proposé au tarif de <strong>24,99 € hors TVA par mois et par établissement</strong>. La TVA
+            Tamply est proposé au tarif de <strong>24,99 € hors TVA par mois et par établissement</strong>. La TVA
             applicable selon le pays de l'utilisateur (Belgique, France ou autre) est ajoutée sur la facture. Les tarifs
             en vigueur sont affichés sur la page <Link to="/tarifs" className="text-primary underline">Tarifs</Link> et
             dans l'espace abonnement de l'utilisateur.
@@ -81,7 +81,7 @@ function CgvPage() {
           </p>
           <p className="mt-3">
             <strong>Modes de paiement acceptés :</strong> carte bancaire (Visa, Mastercard, Bancontact) via le
-            prestataire de paiement sécurisé Stripe. Aucune donnée bancaire n'est stockée sur les serveurs de Stamply Agency.
+            prestataire de paiement sécurisé Stripe. Aucune donnée bancaire n'est stockée sur les serveurs de Tamply.
           </p>
           <p className="mt-3">
             <strong>Facturation :</strong> chaque prélèvement donne lieu à l'émission d'une facture téléchargeable
@@ -137,7 +137,7 @@ function CgvPage() {
             <li>Utiliser le service conformément à sa destination et à la législation en vigueur</li>
             <li>Ne pas porter atteinte au service ou à son intégrité technique</li>
             <li>Respecter les droits des tiers, notamment en matière de données personnelles de ses clients</li>
-            <li>Informer ses clients finaux du traitement de leurs données via Stamply Agency</li>
+            <li>Informer ses clients finaux du traitement de leurs données via Tamply</li>
           </ul>
         </Section>
 
@@ -163,7 +163,7 @@ function CgvPage() {
             l'éditeur une licence non exclusive d'usage uniquement aux fins de fourniture du service.
           </p>
           <p className="mt-3">
-            La marque Stamply Agency, son logo et l'ensemble du code source restent la propriété exclusive de l'éditeur.
+            La marque Tamply, son logo et l'ensemble du code source restent la propriété exclusive de l'éditeur.
           </p>
         </Section>
 
@@ -183,18 +183,18 @@ function CgvPage() {
 
         <Section title="14. Droit applicable et litiges">
           <p>
-            Les présentes CGV sont soumises au droit Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation. En cas de litige, et après
-            tentative de résolution amiable, les tribunaux de Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation seront seuls compétents.
+            Les présentes CGV sont soumises au droit Tamply est en phase bêta — mentions légales/CGV en cours de finalisation. En cas de litige, et après
+            tentative de résolution amiable, les tribunaux de Tamply est en phase bêta — mentions légales/CGV en cours de finalisation seront seuls compétents.
           </p>
           <p className="mt-3">
             Conformément à l'article L612-1 du Code de la consommation, le consommateur peut recourir gratuitement à un
-            médiateur de la consommation : <strong>Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</strong>.
+            médiateur de la consommation : <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>.
           </p>
         </Section>
 
         <Section title="15. Contact">
           <p>
-            Pour toute question relative aux présentes CGV : <strong>Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</strong>
+            Pour toute question relative aux présentes CGV : <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>
           </p>
         </Section>
       </main>
@@ -217,8 +217,8 @@ function LegalHeader() {
     <header className="border-b border-border/60 bg-background">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo Stamply Agency" className="h-8 w-8 object-contain" />
-          <span className="font-bold text-foreground">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-8 w-8 object-contain" />
+          <span className="font-bold text-foreground">Tamply</span>
         </Link>
         <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Retour à l'accueil</Link>
       </div>
@@ -230,7 +230,7 @@ function LegalFooter() {
   return (
     <footer className="mt-12 border-t border-border/60 bg-background py-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-sm text-muted-foreground md:flex-row">
-        <span>© {new Date().getFullYear()} Stamply Agency</span>
+        <span>© {new Date().getFullYear()} Tamply</span>
         <div className="flex gap-6">
           <Link to="/mentions-legales" className="hover:text-foreground">Mentions légales</Link>
           <Link to="/confidentialite" className="hover:text-foreground">Confidentialité</Link>

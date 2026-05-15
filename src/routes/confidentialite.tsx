@@ -9,10 +9,10 @@ export const Route = createFileRoute("/confidentialite")({
     z.object({ shop: z.string().uuid().optional() }).parse(search),
   head: () => ({
     meta: [
-      { title: "Politique de confidentialité — Stamply Agency" },
-      { name: "description", content: "Comment Stamply Agency collecte, utilise et protège vos données personnelles, conformément au RGPD." },
+      { title: "Politique de confidentialité — Tamply" },
+      { name: "description", content: "Comment Tamply collecte, utilise et protège vos données personnelles, conformément au RGPD." },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Politique de confidentialité — Stamply Agency" },
+      { property: "og:title", content: "Politique de confidentialité — Tamply" },
       { property: "og:description", content: "Notre engagement RGPD : transparence sur la collecte et le traitement des données." },
     ],
   }),
@@ -43,8 +43,8 @@ function ConfidentialitePage() {
 
         <Section title="1. Responsable du traitement">
           <p>
-            Le <strong>commerçant</strong> utilisant Stamply Agency est responsable des données collectées via son
-            programme de fidélité. <strong>Stamply Agency</strong> (éditeur de la plateforme) agit en tant que{" "}
+            Le <strong>commerçant</strong> utilisant Tamply est responsable des données collectées via son
+            programme de fidélité. <strong>Tamply</strong> (éditeur de la plateforme) agit en tant que{" "}
             <strong>sous-traitant</strong> au sens du RGPD, et traite les données uniquement pour le compte
             du commerçant et selon ses instructions.
           </p>
@@ -135,8 +135,8 @@ function LegalHeader() {
     <header className="border-b border-border/60 bg-background">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo Stamply Agency" className="h-8 w-8 object-contain" />
-          <span className="font-bold text-foreground">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-8 w-8 object-contain" />
+          <span className="font-bold text-foreground">Tamply</span>
         </Link>
         <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Retour à l'accueil</Link>
       </div>
@@ -148,7 +148,7 @@ function LegalFooter() {
   return (
     <footer className="mt-12 border-t border-border/60 bg-background py-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-sm text-muted-foreground md:flex-row">
-        <span>© {new Date().getFullYear()} Stamply Agency</span>
+        <span>© {new Date().getFullYear()} Tamply</span>
         <div className="flex gap-6">
           <Link to="/mentions-legales" className="hover:text-foreground">Mentions légales</Link>
           <Link to="/confidentialite" className="hover:text-foreground">Confidentialité</Link>

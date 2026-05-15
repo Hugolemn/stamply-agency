@@ -80,7 +80,7 @@ export function FreeQuestion() {
         <div>
           <h3 className="text-xl font-extrabold">Une autre question ?</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Posez-la librement. Notre assistant vous répond instantanément, et l'équipe Stamply Agency
+            Posez-la librement. Notre assistant vous répond instantanément, et l'équipe Tamply
             reçoit votre message pour un suivi personnalisé.
           </p>
         </div>

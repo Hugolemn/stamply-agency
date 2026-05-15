@@ -4,11 +4,11 @@ import logo from "@/assets/logo.png";
 export const Route = createFileRoute("/mentions-legales")({
   head: () => ({
     meta: [
-      { title: "Mentions légales — Stamply Agency" },
-      { name: "description", content: "Mentions légales de Stamply Agency : éditeur, hébergeur, propriété intellectuelle et contact." },
+      { title: "Mentions légales — Tamply" },
+      { name: "description", content: "Mentions légales de Tamply : éditeur, hébergeur, propriété intellectuelle et contact." },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Mentions légales — Stamply Agency" },
-      { property: "og:description", content: "Informations légales obligatoires concernant le site Stamply Agency." },
+      { property: "og:title", content: "Mentions légales — Tamply" },
+      { property: "og:description", content: "Informations légales obligatoires concernant le site Tamply." },
     ],
   }),
   component: MentionsLegalesPage,
@@ -25,17 +25,17 @@ function MentionsLegalesPage() {
         </p>
 
         <Section title="1. Éditeur du site">
-          <p>Le site <strong>Stamply Agency</strong> est édité par :</p>
+          <p>Le site <strong>Tamply</strong> est édité par :</p>
           <ul className="mt-3 space-y-1">
-            <li><strong>Raison sociale :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Forme juridique :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Capital social :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Siège social :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Numéro d'immatriculation :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Numéro de TVA intracommunautaire :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Directeur de la publication :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Email de contact :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
-            <li><strong>Téléphone :</strong> Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Raison sociale :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Forme juridique :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Capital social :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Siège social :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Numéro d'immatriculation :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Numéro de TVA intracommunautaire :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Directeur de la publication :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Email de contact :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
+            <li><strong>Téléphone :</strong> Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</li>
           </ul>
         </Section>
 
@@ -53,8 +53,8 @@ function MentionsLegalesPage() {
 
         <Section title="3. Propriété intellectuelle">
           <p>
-            L'ensemble du contenu présent sur le site Stamply Agency (textes, graphismes, logo, icônes, images, code source) est
-            la propriété exclusive de Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation ou de ses partenaires, et est protégé par les lois
+            L'ensemble du contenu présent sur le site Tamply (textes, graphismes, logo, icônes, images, code source) est
+            la propriété exclusive de Tamply est en phase bêta — mentions légales/CGV en cours de finalisation ou de ses partenaires, et est protégé par les lois
             françaises et internationales relatives à la propriété intellectuelle.
           </p>
           <p className="mt-3">
@@ -87,14 +87,14 @@ function MentionsLegalesPage() {
 
         <Section title="7. Droit applicable">
           <p>
-            Les présentes mentions légales sont régies par le droit Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation. Tout litige relatif
-            au site sera de la compétence exclusive des tribunaux de Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation.
+            Les présentes mentions légales sont régies par le droit Tamply est en phase bêta — mentions légales/CGV en cours de finalisation. Tout litige relatif
+            au site sera de la compétence exclusive des tribunaux de Tamply est en phase bêta — mentions légales/CGV en cours de finalisation.
           </p>
         </Section>
 
         <Section title="8. Contact">
           <p>
-            Pour toute question : <strong>Stamply Agency est en phase bêta — mentions légales/CGV en cours de finalisation</strong>
+            Pour toute question : <strong>Tamply est en phase bêta — mentions légales/CGV en cours de finalisation</strong>
           </p>
         </Section>
       </main>
@@ -117,8 +117,8 @@ function LegalHeader() {
     <header className="border-b border-border/60 bg-background">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo Stamply Agency" className="h-8 w-8 object-contain" />
-          <span className="font-bold text-foreground">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-8 w-8 object-contain" />
+          <span className="font-bold text-foreground">Tamply</span>
         </Link>
         <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Retour à l'accueil</Link>
       </div>
@@ -130,7 +130,7 @@ function LegalFooter() {
   return (
     <footer className="mt-12 border-t border-border/60 bg-background py-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-sm text-muted-foreground md:flex-row">
-        <span>© {new Date().getFullYear()} Stamply Agency</span>
+        <span>© {new Date().getFullYear()} Tamply</span>
         <div className="flex gap-6">
           <Link to="/mentions-legales" className="hover:text-foreground">Mentions légales</Link>
           <Link to="/confidentialite" className="hover:text-foreground">Confidentialité</Link>

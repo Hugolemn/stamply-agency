@@ -10,8 +10,8 @@ import logo from "@/assets/logo.png";
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
     meta: [
-      { title: "Mot de passe oublié · Stamply Agency" },
-      { name: "description", content: "Réinitialisez le mot de passe de votre compte Stamply Agency en quelques secondes." },
+      { title: "Mot de passe oublié · Tamply" },
+      { name: "description", content: "Réinitialisez le mot de passe de votre compte Tamply en quelques secondes." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -39,8 +39,8 @@ function Forgot() {
     <div className="min-h-screen bg-gradient-hero px-4 py-10">
       <div className="mx-auto max-w-md">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-          <img src={logo} alt="Logo Stamply Agency" className="h-10 w-10 object-contain" />
-          <span className="text-2xl font-extrabold">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-10 w-10 object-contain" />
+          <span className="text-2xl font-extrabold">Tamply</span>
         </Link>
         <div className="rounded-3xl border border-border/60 bg-card p-7 shadow-soft">
           <h1 className="text-2xl font-extrabold">Mot de passe oublié ?</h1>
