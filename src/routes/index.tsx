@@ -418,7 +418,7 @@ function Pricing() {
             <div className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Tamply Pro</div>
             <div className="mt-4 flex items-baseline gap-1">
               <span className="text-5xl font-extrabold">24,99€</span>
-              <span className="text-muted-foreground">/mois</span>
+              <span className="text-muted-foreground">HTVA /mois</span>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">par établissement, après l'essai gratuit</p>
             <div className="mt-4 flex items-start gap-3 rounded-xl border border-border/60 bg-muted/40 p-3">
