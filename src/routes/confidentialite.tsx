@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import logo from "@/assets/logo.png";
-import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { getShopContact } from "@/server/shop-contact.functions";
 
 
 export const Route = createFileRoute("/confidentialite")({
@@ -23,15 +24,16 @@ export const Route = createFileRoute("/confidentialite")({
 function ConfidentialitePage() {
   const { shop: shopId } = Route.useSearch();
   const [contact, setContact] = useState<{ nom: string; email: string | null } | null>(null);
+  const fetchContact = useServerFn(getShopContact);
 
   useEffect(() => {
     if (!shopId) { setContact(null); return; }
     let cancelled = false;
-    supabase.from('shops').select('name, email').eq('id', shopId).single()
-  .then(({ data }: { data: { nom: string; email: string | null } | null }) => { if (!cancelled) setContact(data); })
-  .catch(() => { if (!cancelled) setContact(null); });
+    fetchContact({ data: { shopId } })
+      .then((data) => { if (!cancelled) setContact(data); })
+      .catch(() => { if (!cancelled) setContact(null); });
     return () => { cancelled = true; };
-  }, [shopId]);
+  }, [shopId, fetchContact]);
 
   return (
     <div className="min-h-screen bg-background">
