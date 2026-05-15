@@ -125,25 +125,23 @@ function AccountPage() {
       </div>
 
       <Tabs value={tab} onValueChange={(v) => navigate({ to: "/dashboard/account", search: { tab: v }, replace: true })} className="space-y-6">
-        <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <TabsList className="inline-flex w-max gap-1 bg-muted/50 p-1 sm:grid sm:w-full sm:grid-cols-5">
-            <TabsTrigger value="profil" className="rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
-              Profil
-            </TabsTrigger>
-            <TabsTrigger value="parametres" className="rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
-              Paramètres
-            </TabsTrigger>
-            <TabsTrigger value="abonnement" className="rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
-              Abonnement
-            </TabsTrigger>
-            <TabsTrigger value="factures" className="rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
-              Factures
-            </TabsTrigger>
-            <TabsTrigger value="danger" className="rounded-lg whitespace-nowrap text-destructive data-[state=active]:bg-background data-[state=active]:shadow-sm">
-              Zone dangereuse
-            </TabsTrigger>
-          </TabsList>
-        </div>
+        <TabsList className="flex h-auto w-full gap-1 overflow-x-auto bg-muted/50 p-1 sm:grid sm:grid-cols-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <TabsTrigger value="profil" className="flex-shrink-0 rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            Profil
+          </TabsTrigger>
+          <TabsTrigger value="parametres" className="flex-shrink-0 rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            Paramètres
+          </TabsTrigger>
+          <TabsTrigger value="abonnement" className="flex-shrink-0 rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            Abonnement
+          </TabsTrigger>
+          <TabsTrigger value="factures" className="flex-shrink-0 rounded-lg whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            Factures
+          </TabsTrigger>
+          <TabsTrigger value="danger" className="flex-shrink-0 rounded-lg whitespace-nowrap text-destructive data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            Zone dangereuse
+          </TabsTrigger>
+        </TabsList>
 
         {/* PROFIL */}
         <TabsContent value="profil" className="space-y-6">
