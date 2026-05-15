@@ -55,11 +55,17 @@ function Overview() {
       <OnboardingChecklist shop={shop} stats={stats} statsLoading={statsLoading} />
 
       {shop.statut_abonnement === "essai" && (
-        <div className="flex items-center justify-between rounded-2xl border border-border/60 bg-card p-4 shadow-card">
+        <div className="flex flex-col gap-2 rounded-2xl border border-border/60 bg-card p-4 shadow-card sm:flex-row sm:items-center sm:justify-between">
           <div className="text-sm">
             <b>Essai gratuit</b> — encore <b>{trialDays} jours</b>.
           </div>
-          <Link to="/dashboard/account" search={{ tab: "abonnement" }} className="text-sm font-semibold text-secondary hover:underline">Activer l'abonnement →</Link>
+          <Link
+            to="/dashboard/account"
+            search={{ tab: "abonnement" }}
+            className="text-sm font-semibold text-secondary hover:underline"
+          >
+            Activer l'abonnement →
+          </Link>
         </div>
       )}
 

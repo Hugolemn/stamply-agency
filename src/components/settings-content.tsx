@@ -289,8 +289,8 @@ export function SettingsContent() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
-        <h2 className="font-bold">Établissement</h2>
+      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-5 sm:p-6">
+        <h2 className="text-center font-bold sm:text-left">Établissement</h2>
         <div>
           <Label className="mb-1.5 block text-sm font-semibold">Nom</Label>
           <Input value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })} className="h-11 rounded-xl" />
@@ -410,8 +410,8 @@ export function SettingsContent() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
-        <h2 className="font-bold">Programme de fidélité</h2>
+      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-5 sm:p-6">
+        <h2 className="text-center font-bold sm:text-left">Programme de fidélité</h2>
         <div>
           <Label className="mb-1.5 block text-sm font-semibold">Récompense</Label>
           <Input value={form.description_recompense} onChange={(e) => setForm({ ...form, description_recompense: e.target.value })} placeholder="Ex : 1 boisson offerte, 1 dessert gratuit, -10%…" className="h-11 rounded-xl" />
@@ -474,8 +474,8 @@ export function SettingsContent() {
         {saving ? "Enregistrement…" : "Enregistrer"}
       </Button>
 
-      <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
-        <div>
+      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-4 sm:p-6">
+        <div className="text-center sm:text-left">
           <h2 className="font-bold">Apparence</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Choisissez le thème de l'interface. Votre choix est mémorisé sur cet appareil.
@@ -521,25 +521,25 @@ export function SettingsContent() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
-        <div>
+      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-4 sm:p-6">
+        <div className="text-center sm:text-left">
           <h2 className="font-bold">Alertes de validation</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Soyez prévenu dès qu'un client scanne votre QR code, même si vous n'êtes pas sur la page de validation.
           </p>
         </div>
 
-        <div className="flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-muted/30 p-4">
-          <div className="flex items-start gap-3">
+        <div className="flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-muted/30 p-4">
+          <div className="flex min-w-0 items-start gap-3">
             <Volume2 className="mt-0.5 h-5 w-5 text-muted-foreground" />
-            <div>
+            <div className="min-w-0">
               <p className="font-semibold text-sm">Son d'alerte</p>
               <p className="mt-0.5 text-xs text-muted-foreground">
                 Joue un « ding-dong » à chaque nouvelle demande.
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-shrink-0 items-center gap-2">
             <button
               type="button"
               onClick={playTestBeep}
@@ -551,10 +551,10 @@ export function SettingsContent() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-muted/30 p-4">
-          <div className="flex items-start gap-3">
+        <div className="flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-muted/30 p-4">
+          <div className="flex min-w-0 items-start gap-3">
             <Vibrate className="mt-0.5 h-5 w-5 text-muted-foreground" />
-            <div>
+            <div className="min-w-0">
               <p className="font-semibold text-sm">Vibration (mobile)</p>
               <p className="mt-0.5 text-xs text-muted-foreground">
                 {vibrationSupported
@@ -563,7 +563,7 @@ export function SettingsContent() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-shrink-0 items-center gap-2">
             <button
               type="button"
               disabled={!vibrationSupported}
@@ -576,10 +576,10 @@ export function SettingsContent() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-muted/30 p-4">
-          <div className="flex items-start gap-3">
+        <div className="flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-muted/30 p-4">
+          <div className="flex min-w-0 items-start gap-3">
             <Bell className="mt-0.5 h-5 w-5 text-muted-foreground" />
-            <div>
+            <div className="min-w-0">
               <p className="font-semibold text-sm">Notifications système</p>
               <p className="mt-0.5 text-xs text-muted-foreground">
                 {notifSupported
@@ -588,7 +588,7 @@ export function SettingsContent() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-shrink-0 items-center gap-2">
             <button
               type="button"
               disabled={!notifSupported || !notifOn}
@@ -602,22 +602,22 @@ export function SettingsContent() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
-        <div>
+      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-4 sm:p-6">
+        <div className="text-center sm:text-left">
           <h2 className="font-bold">Mes données personnelles (RGPD)</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Vous disposez d'un droit d'accès, de portabilité et d'effacement sur vos données.
           </p>
         </div>
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-xl border border-border/60 bg-muted/30 p-4">
-          <div className="flex-1">
+        <div className="flex flex-col gap-3 rounded-xl border border-border/60 bg-muted/30 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex-1 text-center sm:text-left">
             <p className="font-semibold text-sm">Exporter mes données</p>
             <p className="mt-0.5 text-xs text-muted-foreground">
               Téléchargez un fichier JSON contenant l'ensemble de vos données (compte, établissement, clients, tampons).
             </p>
           </div>
-          <Button variant="outline" onClick={exportData} disabled={exporting} className="shrink-0">
+          <Button variant="outline" onClick={exportData} disabled={exporting} className="w-full shrink-0 sm:w-auto">
             <Download className="mr-2 h-4 w-4" />
             {exporting ? "Export…" : "Télécharger"}
           </Button>

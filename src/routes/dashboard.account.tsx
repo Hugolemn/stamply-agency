@@ -21,15 +21,33 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Mail, KeyRound, FileText, Trash2, AlertTriangle, Receipt, CreditCard } from "lucide-react";
+import { Mail, KeyRound, FileText, Trash2, AlertTriangle, Receipt, CreditCard, RefreshCw } from "lucide-react";
 import { SettingsContent } from "@/components/settings-content";
+
+const VALID_TABS = ["profil", "parametres", "abonnement", "factures", "danger"] as const;
 
 export const Route = createFileRoute("/dashboard/account")({
   head: () => ({ meta: [{ title: "Mon compte · Tamply" }] }),
-  validateSearch: (search: Record<string, unknown>) => ({
-    tab: (search.tab as string) || "profil",
-  }),
+  validateSearch: (search: Record<string, unknown>) => {
+    const raw = typeof search.tab === "string" ? search.tab : "profil";
+    const tab = (VALID_TABS as readonly string[]).includes(raw) ? raw : "profil";
+    return { tab };
+  },
   component: AccountPage,
+  errorComponent: ({ error, reset }) => (
+    <div className="mx-auto max-w-md space-y-4 rounded-2xl border border-border/60 bg-card p-6 text-center shadow-card">
+      <h2 className="text-lg font-bold">Une erreur est survenue</h2>
+      <p className="text-sm text-muted-foreground">
+        Impossible d'afficher cette page pour le moment. Réessayez dans un instant.
+      </p>
+      {import.meta.env.DEV && (
+        <pre className="overflow-auto rounded bg-muted p-2 text-left text-xs">{error.message}</pre>
+      )}
+      <Button variant="outline" onClick={reset} className="w-full sm:w-auto">
+        <RefreshCw className="mr-2 h-4 w-4" /> Réessayer
+      </Button>
+    </div>
+  ),
 });
 
 function AccountPage() {
@@ -145,10 +163,10 @@ function AccountPage() {
 
         {/* PROFIL */}
         <TabsContent value="profil" className="space-y-6">
-          <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
+          <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-4 sm:p-6">
             <div className="flex items-start gap-3">
               <Mail className="mt-0.5 h-5 w-5 text-muted-foreground" />
-              <div>
+              <div className="min-w-0">
                 <h2 className="font-bold">Adresse email</h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">
                   Utilisée pour la connexion et les notifications importantes.
@@ -157,7 +175,7 @@ function AccountPage() {
             </div>
             <div>
               <Label className="mb-1.5 block text-sm font-semibold">Email actuel</Label>
-              <p className="text-sm font-medium">{user.email}</p>
+              <p className="break-all text-sm font-medium">{user.email}</p>
             </div>
             <div>
               <Label className="mb-1.5 block text-sm font-semibold">Nouvelle adresse email</Label>
@@ -177,7 +195,7 @@ function AccountPage() {
             </Button>
           </div>
 
-          <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
+          <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-4 sm:p-6">
             <div className="flex items-start gap-3">
               <KeyRound className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div>
