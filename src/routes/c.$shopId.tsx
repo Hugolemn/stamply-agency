@@ -453,15 +453,16 @@ function StampGrid({
         return (
           <div
             key={i}
-            className="aspect-square rounded-xl grid place-items-center text-lg leading-none border-2 transition-all"
+            className="aspect-square rounded-xl flex items-center justify-center text-2xl border-2 transition-all"
             style={{
               background: done ? color : "transparent",
               borderColor: done ? color : "color-mix(in oklab, var(--muted-foreground) 35%, transparent)",
               borderStyle: done ? "solid" : "dashed",
               color: done ? "#0a0a0a" : "color-mix(in oklab, var(--muted-foreground) 80%, transparent)",
+              lineHeight: 1,
             }}
           >
-            {done ? emoji : ""}
+            <span className="block leading-none translate-y-[1px]">{done ? emoji : ""}</span>
           </div>
         );
       })}
