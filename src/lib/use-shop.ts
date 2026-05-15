@@ -28,7 +28,17 @@ export function useShop() {
 
   const refresh = useCallback(async () => {
     if (!user) { setShop(null); setLoading(false); return; }
-    const { data, error } = await supabase.from("shops").select("*").eq("owner_id", user.id).maybeSingle();
+    let { data, error } = await supabase
+      .from("shops").select("*").eq("owner_id", user.id).maybeSingle();
+    // If the session hasn't been attached to the supabase client yet,
+    // RLS will silently return no rows. Wait for the session and retry once.
+    if (!error && !data) {
+      await supabase.auth.getSession();
+      const retry = await supabase
+        .from("shops").select("*").eq("owner_id", user.id).maybeSingle();
+      data = retry.data;
+      error = retry.error;
+    }
     if (!error) setShop(data as Shop | null);
     setLoading(false);
   }, [user]);
