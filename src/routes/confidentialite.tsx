@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import logo from "@/assets/logo.png";
+import { supabase } from "@/integrations/supabase/client";
 
 
 export const Route = createFileRoute("/confidentialite")({
@@ -27,7 +28,7 @@ function ConfidentialitePage() {
     if (!shopId) { setContact(null); return; }
     let cancelled = false;
     supabase.from('shops').select('name, email').eq('id', shopId).single()
-  .then(({ data }) => { if (!cancelled) setContact(data); })
+  .then(({ data }: { data: { nom: string; email: string | null } | null }) => { if (!cancelled) setContact(data); })
   .catch(() => { if (!cancelled) setContact(null); });
     return () => { cancelled = true; };
   }, [shopId]);
