@@ -21,15 +21,33 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Mail, KeyRound, FileText, Trash2, AlertTriangle, Receipt, CreditCard } from "lucide-react";
+import { Mail, KeyRound, FileText, Trash2, AlertTriangle, Receipt, CreditCard, RefreshCw } from "lucide-react";
 import { SettingsContent } from "@/components/settings-content";
+
+const VALID_TABS = ["profil", "parametres", "abonnement", "factures", "danger"] as const;
 
 export const Route = createFileRoute("/dashboard/account")({
   head: () => ({ meta: [{ title: "Mon compte · Tamply" }] }),
-  validateSearch: (search: Record<string, unknown>) => ({
-    tab: (search.tab as string) || "profil",
-  }),
+  validateSearch: (search: Record<string, unknown>) => {
+    const raw = typeof search.tab === "string" ? search.tab : "profil";
+    const tab = (VALID_TABS as readonly string[]).includes(raw) ? raw : "profil";
+    return { tab };
+  },
   component: AccountPage,
+  errorComponent: ({ error, reset }) => (
+    <div className="mx-auto max-w-md space-y-4 rounded-2xl border border-border/60 bg-card p-6 text-center shadow-card">
+      <h2 className="text-lg font-bold">Une erreur est survenue</h2>
+      <p className="text-sm text-muted-foreground">
+        Impossible d'afficher cette page pour le moment. Réessayez dans un instant.
+      </p>
+      {import.meta.env.DEV && (
+        <pre className="overflow-auto rounded bg-muted p-2 text-left text-xs">{error.message}</pre>
+      )}
+      <Button variant="outline" onClick={reset} className="w-full sm:w-auto">
+        <RefreshCw className="mr-2 h-4 w-4" /> Réessayer
+      </Button>
+    </div>
+  ),
 });
 
 function AccountPage() {
