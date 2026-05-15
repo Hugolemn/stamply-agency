@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import logo from "@/assets/logo.png";
 import { useServerFn } from "@tanstack/react-start";
-import { getShopContact } from "@/server/shop-contact.functions";
+import { getShopContact } from "@/lib/shop-contact.functions";
 
 
 export const Route = createFileRoute("/confidentialite")({
