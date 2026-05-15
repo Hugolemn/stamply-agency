@@ -163,10 +163,10 @@ function AccountPage() {
 
         {/* PROFIL */}
         <TabsContent value="profil" className="space-y-6">
-          <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
+          <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-4 sm:p-6">
             <div className="flex items-start gap-3">
               <Mail className="mt-0.5 h-5 w-5 text-muted-foreground" />
-              <div>
+              <div className="min-w-0">
                 <h2 className="font-bold">Adresse email</h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">
                   Utilisée pour la connexion et les notifications importantes.
@@ -175,7 +175,7 @@ function AccountPage() {
             </div>
             <div>
               <Label className="mb-1.5 block text-sm font-semibold">Email actuel</Label>
-              <p className="text-sm font-medium">{user.email}</p>
+              <p className="break-all text-sm font-medium">{user.email}</p>
             </div>
             <div>
               <Label className="mb-1.5 block text-sm font-semibold">Nouvelle adresse email</Label>
@@ -195,7 +195,7 @@ function AccountPage() {
             </Button>
           </div>
 
-          <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-card space-y-4">
+          <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-card space-y-4 sm:p-6">
             <div className="flex items-start gap-3">
               <KeyRound className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div>
