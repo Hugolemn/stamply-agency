@@ -10,7 +10,7 @@ import logo from "@/assets/logo.png";
 export const Route = createFileRoute("/c/$shopId")({
   head: () => ({
     meta: [
-      { title: "Carte de fidélité · Stamply Agency" },
+      { title: "Carte de fidélité · Tamply" },
       {
         name: "description",
         content:
@@ -230,8 +230,8 @@ function Wrapper({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-neutral-50 px-4 py-6" style={{ background: "oklch(97% 0.01 95)" }}>
       <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-md flex-col">
         <div className="mt-2 flex items-center justify-center gap-2 opacity-60">
-          <img src={logo} alt="Logo Stamply Agency" className="h-7 w-7 object-contain" />
-          <span className="text-xs font-bold tracking-wide">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-7 w-7 object-contain" />
+          <span className="text-xs font-bold tracking-wide">Tamply</span>
         </div>
         <div className="mt-6 flex flex-1 flex-col">{children}</div>
       </div>

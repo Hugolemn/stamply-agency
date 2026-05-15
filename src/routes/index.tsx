@@ -8,17 +8,17 @@ import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stamply Agency — La carte de fidélité digitale pour les commerces de proximité" },
+      { title: "Tamply — La carte de fidélité digitale pour les commerces de proximité" },
       {
         name: "description",
         content:
           "Restaurants, cafés, salons, instituts, studios, boutiques, artisans : fidélisez vos clients sans qu'ils téléchargent d'app. Validez chaque tampon en un clic. 30 jours d'essai gratuit, puis 24,99€/mois.",
       },
-      { property: "og:title", content: "Stamply Agency — La carte de fidélité digitale pour les commerces de proximité" },
+      { property: "og:title", content: "Tamply — La carte de fidélité digitale pour les commerces de proximité" },
       { property: "og:description", content: "Aucune app à télécharger. Validez en un clic. 30 jours gratuits." },
       { property: "og:image", content: "/og-image.jpg" },
       { property: "og:url", content: "https://tamply.app/" },
-      { name: "twitter:title", content: "Stamply Agency — La carte de fidélité digitale pour les commerces de proximité" },
+      { name: "twitter:title", content: "Tamply — La carte de fidélité digitale pour les commerces de proximité" },
       { name: "twitter:description", content: "Aucune app à télécharger. Validez en un clic. 30 jours gratuits." },
       { name: "keywords", content: "carte fidélité digitale, programme fidélité, commerce de proximité, restaurant, café, salon de coiffure, institut de beauté, studio sport, boutique, artisan, QR code" },
     ],
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
-          name: "Stamply Agency",
+          name: "Tamply",
           applicationCategory: "BusinessApplication",
           operatingSystem: "Web",
           description:
@@ -46,7 +46,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Stamply Agency",
+          name: "Tamply",
           url: "https://tamply.app",
           logo: "https://tamply.app/og-image.jpg",
           description: "La carte de fidélité digitale pour les commerces de proximité",
@@ -81,8 +81,8 @@ function Header() {
     <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo Stamply Agency" className="h-9 w-9 object-contain" width="36" height="36" decoding="async" />
-          <span className="text-xl font-extrabold tracking-tight">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-9 w-9 object-contain" width="36" height="36" decoding="async" />
+          <span className="text-xl font-extrabold tracking-tight">Tamply</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
           <a href="#avantages" className="text-muted-foreground hover:text-foreground">Avantages</a>
@@ -312,7 +312,7 @@ function HowItWorks() {
             <Play className="h-3 w-3 fill-current text-tamply-red" />
             Démo interactive
           </div>
-          <h2 className="text-3xl font-extrabold md:text-4xl">Voyez Stamply Agency en action</h2>
+          <h2 className="text-3xl font-extrabold md:text-4xl">Voyez Tamply en action</h2>
           <p className="mt-3 text-muted-foreground">
             30 secondes pour comprendre, du scan client à la récompense.
           </p>
@@ -415,7 +415,7 @@ function Pricing() {
             <div className="absolute right-4 top-4 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-secondary-foreground">
               30 jours offerts
             </div>
-            <div className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Stamply Agency Pro</div>
+            <div className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Tamply Pro</div>
             <div className="mt-4 flex items-baseline gap-1">
               <span className="text-5xl font-extrabold">24,99€</span>
               <span className="text-muted-foreground">/mois</span>
@@ -498,7 +498,7 @@ function ForWho() {
           </div>
           <h2 className="text-3xl font-extrabold md:text-4xl">Conçu pour votre métier</h2>
           <p className="mt-3 text-muted-foreground">
-            Stamply Agency s'adapte à tous les établissements où vos clients reviennent — quel que soit votre secteur.
+            Tamply s'adapte à tous les établissements où vos clients reviennent — quel que soit votre secteur.
           </p>
         </div>
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -518,7 +518,7 @@ function ForWho() {
           ))}
         </div>
         <p className="mx-auto mt-10 max-w-xl text-center text-xs text-muted-foreground">
-          Vous démarrez parmi les premiers commerces à utiliser Stamply Agency.
+          Vous démarrez parmi les premiers commerces à utiliser Tamply.
           Devenez client fondateur et bénéficiez d'un accompagnement personnalisé.
         </p>
       </div>
@@ -531,8 +531,8 @@ function Footer() {
     <footer className="border-t border-border/60 bg-background py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground md:flex-row">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="Logo Stamply Agency" className="h-7 w-7 object-contain" width="28" height="28" loading="lazy" decoding="async" />
-          <span className="font-bold text-foreground">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-7 w-7 object-contain" width="28" height="28" loading="lazy" decoding="async" />
+          <span className="font-bold text-foreground">Tamply</span>
           <span>· © {new Date().getFullYear()}</span>
         </div>
         <div className="flex gap-6">

@@ -23,20 +23,20 @@ import { FreeQuestion } from "@/components/free-question";
 export const Route = createFileRoute("/tarifs")({
   head: () => ({
     meta: [
-      { title: "Tarifs Stamply Agency — 24,99€/mois, 30 jours d'essai gratuit" },
+      { title: "Tarifs Tamply — 24,99€/mois, 30 jours d'essai gratuit" },
       {
         name: "description",
         content:
           "Un seul tarif simple : 24,99€/mois par établissement, sans engagement. 30 jours d'essai gratuit, sans carte bancaire. Clients illimités, support en français.",
       },
-      { property: "og:title", content: "Tarifs Stamply Agency — 24,99€/mois, 30 jours d'essai gratuit" },
+      { property: "og:title", content: "Tarifs Tamply — 24,99€/mois, 30 jours d'essai gratuit" },
       {
         property: "og:description",
         content:
           "Un seul tarif simple, sans engagement. Essai 30 jours sans carte bancaire.",
       },
       { property: "og:url", content: "https://tamply.app/tarifs" },
-      { name: "twitter:title", content: "Tarifs Stamply Agency — 24,99€/mois" },
+      { name: "twitter:title", content: "Tarifs Tamply — 24,99€/mois" },
       {
         name: "twitter:description",
         content: "30 jours d'essai gratuit, sans carte bancaire. Sans engagement.",
@@ -44,7 +44,7 @@ export const Route = createFileRoute("/tarifs")({
       {
         name: "keywords",
         content:
-          "tarif carte fidélité digitale, prix Stamply Agency, abonnement fidélisation Horeca, fidélité restaurant prix",
+          "tarif carte fidélité digitale, prix Tamply, abonnement fidélisation Horeca, fidélité restaurant prix",
       },
     ],
     scripts: [
@@ -53,10 +53,10 @@ export const Route = createFileRoute("/tarifs")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Product",
-          name: "Stamply Agency Pro",
+          name: "Tamply Pro",
           description:
             "Carte de fidélité digitale pour les commerces de l'Horeca, par établissement.",
-          brand: { "@type": "Brand", name: "Stamply Agency" },
+          brand: { "@type": "Brand", name: "Tamply" },
           offers: {
             "@type": "Offer",
             price: "24.99",
@@ -94,13 +94,13 @@ function Header() {
         <Link to="/" className="flex items-center gap-2">
           <img
             src={logo}
-            alt="Logo Stamply Agency"
+            alt="Logo Tamply"
             className="h-9 w-9 object-contain"
             width="36"
             height="36"
             decoding="async"
           />
-          <span className="text-xl font-extrabold tracking-tight">Stamply Agency</span>
+          <span className="text-xl font-extrabold tracking-tight">Tamply</span>
         </Link>
         <div className="flex items-center gap-2">
           <Link
@@ -165,7 +165,7 @@ function PricingCard() {
             30 jours offerts
           </div>
           <div className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-            Stamply Agency Pro
+            Tamply Pro
           </div>
           <div className="mt-4 flex items-baseline gap-1">
             <span className="text-5xl font-extrabold">24,99€</span>
@@ -285,7 +285,7 @@ function PriceFaq() {
     },
     {
       q: "Que se passe-t-il si je dépasse un certain nombre de clients ?",
-      a: "Rien. Stamply Agency n'a aucune limite de clients ni de tampons. Le tarif reste 24,99€/mois, que vous ayez 10 ou 10 000 clients.",
+      a: "Rien. Tamply n'a aucune limite de clients ni de tampons. Le tarif reste 24,99€/mois, que vous ayez 10 ou 10 000 clients.",
     },
     {
       q: "Y a-t-il des frais cachés (commission, SMS, setup) ?",
@@ -343,7 +343,7 @@ function FinalCta() {
     <section className="bg-gradient-hero py-20">
       <div className="mx-auto max-w-3xl px-4 text-center reveal">
         <h2 className="text-3xl font-extrabold md:text-4xl">
-          Prêt à essayer Stamply Agency gratuitement ?
+          Prêt à essayer Tamply gratuitement ?
         </h2>
         <p className="mt-3 text-muted-foreground">
           30 jours pour tester, sans carte bancaire et sans engagement.
@@ -365,14 +365,14 @@ function Footer() {
         <div className="flex items-center gap-2">
           <img
             src={logo}
-            alt="Logo Stamply Agency"
+            alt="Logo Tamply"
             className="h-7 w-7 object-contain"
             width="28"
             height="28"
             loading="lazy"
             decoding="async"
           />
-          <span className="font-bold text-foreground">Stamply Agency</span>
+          <span className="font-bold text-foreground">Tamply</span>
           <span>· © {new Date().getFullYear()}</span>
         </div>
         <div className="flex gap-6">

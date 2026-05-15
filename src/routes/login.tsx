@@ -11,8 +11,8 @@ import logo from "@/assets/logo.png";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Connexion · Stamply Agency" },
-      { name: "description", content: "Connectez-vous à votre espace Stamply Agency pour gérer vos clients fidèles." },
+      { title: "Connexion · Tamply" },
+      { name: "description", content: "Connectez-vous à votre espace Tamply pour gérer vos clients fidèles." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -61,8 +61,8 @@ function Login() {
     <div className="min-h-screen bg-gradient-hero px-4 py-10">
       <div className="mx-auto max-w-md">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-          <img src={logo} alt="Logo Stamply Agency" className="h-10 w-10 object-contain" />
-          <span className="text-2xl font-extrabold">Stamply Agency</span>
+          <img src={logo} alt="Logo Tamply" className="h-10 w-10 object-contain" />
+          <span className="text-2xl font-extrabold">Tamply</span>
         </Link>
         <div className="rounded-3xl border border-border/60 bg-card p-7 shadow-soft">
           <h1 className="text-2xl font-extrabold">Connexion</h1>
